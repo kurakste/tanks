@@ -1,0 +1,20 @@
+$bg: lightgray;
+$imgborder: 2px;
+
+body {
+  background: $bg;
+}
+
+#outer {
+  margin: 15% auto;
+  //background-color: aquamarine;
+  border-style: solid;
+  border-color: antiquewhite;
+  width: 600px;
+  height: 600px;
+}
+
+#cbox {
+  //width: 300px;
+  //height: 300px;
+}
