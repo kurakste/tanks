@@ -13,17 +13,14 @@ function App(name) {
  *     ...
  *  ]
  */
-App.prototype.loadSpritesSheets = function (arrOfSpritesheets) {
+App.prototype.loadSpritesSheets = async function (arrOfSpritesheets) {
   const promBound = arrOfSpritesheets.map(img => {
     return { name: img.name, prom: imgLoader(img.src) }
   });
   console.log('promboud: ', promBound);
-  (async function () {
-    console.log('from async!');
-    const data = await Promise.all(promBound.map(el => el.prom));
-    console.log('get data:', data);
-  })();
-  console.log('right next to async');
+  const data = await Promise.all(promBound.map(el => el.prom));
+  console.log('get data: ', data);
+
 }
 
 App.prototype.loadGameMap = function (arrOfActors) {

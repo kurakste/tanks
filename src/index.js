@@ -1,16 +1,11 @@
 import './styles/main.scss';
 import App from './app';
-import imShort from './img/sprites.png';
-import imFull from './img/sprites-full.png';
+import sprSheetsArray from './img/imgSpritesheetsArr';
 
 
-const sprSheetsArray = [
-  { name: 'fullSpriteSheet', src: imFull },
-  { name: 'shortSpritesSheet', src: imShort },
-];
+(async function () {
+  const app = new App('Tanks');
+  await app.loadSpritesSheets(sprSheetsArray);
+  app.init();
 
-
-const app = new App('Tanks');
-
-app.loadSpritesSheets(sprSheetsArray);
-app.init();
+})();
