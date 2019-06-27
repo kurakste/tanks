@@ -1,4 +1,4 @@
-import imgLoader from './helpers/spriteLoader';
+import imgLoader from './helpers/imgLoader';
 
 function App(name) {
   // [{name, <img>}, ...] 
@@ -9,16 +9,21 @@ function App(name) {
 /**
  * arrOfSpritesheets is:
  *  [
- *    {name: spritesheetName, path:'./img/sprites-full.png'},
+ *    {name: spritesheetName, src:'./img/sprites-full.png'},
  *     ...
  *  ]
  */
 App.prototype.loadSpritesSheets = function (arrOfSpritesheets) {
-  const promBound = arrOfSpritesheets.map(spr => {
-    return imgLoader(src)
-
+  const promBound = arrOfSpritesheets.map(img => {
+    return { name: img.name, prom: imgLoader(img.src) }
   });
-
+  console.log('promboud: ', promBound);
+  (async function () {
+    console.log('from async!');
+    const data = await Promise.all(promBound.map(el => el.prom));
+    console.log('get data:', data);
+  })();
+  console.log('right next to async');
 }
 
 App.prototype.loadGameMap = function (arrOfActors) {
