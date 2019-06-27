@@ -1,9 +1,6 @@
 export default function App(cont, bg, sprt) {
-
-  const out = {
-
-  }
+  this.spriteSheets = {}
+  this.loadSpritesSheets()
 
 
-  return out;
 }
