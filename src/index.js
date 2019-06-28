@@ -8,5 +8,4 @@ import sprSheetsArray from './img/imgSpritesheetsArr';
   await app.loadSpritesSheets(sprSheetsArray);
   app.init();
   setInterval(app.clock, 8)
-
 })();
