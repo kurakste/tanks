@@ -1,12 +1,17 @@
 import imgLoader from './helpers/imgLoader';
-
+/**
+ * 
+ * @param {String} name Just any name
+ * @param {Number} gameSpeed how many tymes per second we will update game.
+ */
 function App(name, gameSpeed) {
   // [{name, <img>}, ...] 
   this.spriteSheets = []
   this.name = name;
-  this.gameSpeed = gameSpeed;
+  this.gameSpeed = 1/gameSpeed;
   this.work = true;
   console.log('from init', this.gameSpeed);
+
   this.clock = () => {
     now = Date.now();
     let dt = (now-lt);
@@ -14,6 +19,7 @@ function App(name, gameSpeed) {
     lt = Date.now();
     console.log('tic', dt);
   }
+
 }
 let now = Date.now();
 let lt = Date.now();
