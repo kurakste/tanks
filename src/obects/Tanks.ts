@@ -28,8 +28,8 @@ class Tanks implements Games {
     this._lt = Date.now();
     this.clock = this.clock.bind(this);
     this._subscribers = {};
-    this._subscribers[subscriptions.clock] = [];
-    this._subscribers[subscriptions.draw] = [];
+    //this._subscribers[subscriptions.clock] = [];
+    //this._subscribers[subscriptions.draw] = [];
   }
 
   clock() {
