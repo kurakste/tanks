@@ -2,15 +2,15 @@ import imgLoader from './helpers/imgLoader';
 /**
  * 
  * @param {String} name Just any name
- * @param {Number} gameSpeed how many tymes per second we will update game.
+ * @param {Number} fps how many tymes per second we will update game.
  */
 class App {
 
-  constructor(name, gameSpeed) {
+  constructor(name, fps) {
     // [{name, <img>}, ...] 
     this.spriteSheets = []
     this.name = name;
-    this.gameSpeed = 1 / gameSpeed;
+    this.fps = 1 / fps;
     this.work = true;
     this._now = Date.now();
     this._lt = Date.now();
@@ -20,9 +20,9 @@ class App {
   clock() {
     this._now = Date.now();
     let dt = (this._now - this._lt);
-    if (dt <= this.gameSpeed * 1000) return;
+    if (dt <= this.fps * 1000) return;
     this._lt = Date.now();
-    console.log('tic', dt);
+    //    console.log('tic', dt);
   }
 
   /**
