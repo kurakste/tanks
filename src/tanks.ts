@@ -1,8 +1,8 @@
 import imgLoader from './helpers/imgLoader';
-import AppInterface from './intarfaces/app';
+import Game from './intarfaces/Game';
 import spriteseetsImageInterface from './intarfaces/spritesheetObject';
 
-class App implements AppInterface {
+class Tanks implements Game {
   spriteSheets: Array<any>;
   name: string;
   fps: number;
@@ -49,4 +49,4 @@ class App implements AppInterface {
 
 
 
-export default App;
+export default Tanks;

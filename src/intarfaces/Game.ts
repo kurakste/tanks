@@ -1,6 +1,6 @@
 import spriteseetsImageInterface from './spritesheetObject';
 
-interface AppInterface {
+interface Game {
   spriteSheets: Array<any>;
   name: string;
   fps: number;
@@ -12,4 +12,4 @@ interface AppInterface {
   loadGameMap(arrOfActors: Array<any>): void;
 }
 
-export default AppInterface;
+export default Game;
