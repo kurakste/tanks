@@ -1,11 +1,11 @@
 import './styles/main.scss';
-import Tanks from './tanks';
+import Tanks from './obects/Tanks';
 import sprSheetsArray from './img/imgSpritesheetsArr';
 
 
 (async function () {
-  const app = new Tanks('Tanks', 1);
-  await app.loadSpritesSheets(sprSheetsArray);
-  app.init();
-  setInterval(app.clock, 8)
+  const tanks = new Tanks('Tanks', 1);
+  await tanks.loadSpritesSheets(sprSheetsArray);
+  tanks.init();
+  setInterval(tanks.clock, 8)
 })();

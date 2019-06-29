@@ -1,5 +1,5 @@
 import Sprite from './Sprites';
-import Game from '../../Game';
+import Game from '../../Games';
 import Directions from './Directions'
 
 export default interface Actores {
@@ -9,6 +9,8 @@ export default interface Actores {
   ysize: number;
   speed: number;
   sprites: Array<Sprite>;
-  draw(game: Game): void;
   move(direction: Directions, game: Game): void;
+  clock(): void;
+  draw(game: Game):void;
+  keyboardHandler():void;
 }

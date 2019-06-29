@@ -1,4 +1,4 @@
-import Game from '../../../intarfaces/Game';
+import Game from '../../Games';
 
 export default interface Sprites {
   spritesSheetCardName: string;
@@ -6,5 +6,5 @@ export default interface Sprites {
   pictureSequence: Array<number>;
   speed: number;
   _last: number;
-  getCurrentImage(game: Game):void;
+  draw(xpos: number, ypos: number, game: Game): void;
 }

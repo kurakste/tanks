@@ -1,19 +1,24 @@
-import imgLoader from './helpers/imgLoader';
-import Game from './intarfaces/Game';
-import spriteseetsImageInterface from './intarfaces/objects/spritesheetObject';
+import imgLoader from '../helpers/imgLoader';
+import Games from '../intarfaces/Games';
+import KeyboardStates from '../intarfaces/KeyboardStates';
+import KeyboardState from './KeyBoardState';
 
-class Tanks implements Game {
+class Tanks implements Games {
   spriteSheets: Array<any>;
+  ctx: CanvasRenderingContext2D;
+  keyboardState: KeyboardStates;
   name: string;
   fps: number;
   work: boolean;
   _now: number;
   _lt: number;
-  constructor(name: string, fps: number) {
+
+  constructor(name: string, speed: number) {
     // [{name, <img>}, ...] 
     this.spriteSheets = []
     this.name = name;
-    this.fps = 1 / fps;
+    this.keyboardState = new KeyboardState();
+    this.fps = 1 / speed;
     this.work = true;
     this._now = Date.now();
     this._lt = Date.now();
