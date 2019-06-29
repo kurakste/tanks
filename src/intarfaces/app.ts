@@ -9,7 +9,6 @@ interface AppInterface {
   _lt: number;
   clock(): void;
   loadSpritesSheets(arr: Array<spriteseetsImageInterface>):void;
-  //loadSpritesSheets(arrOfSpritesheets: Array<any>): Array<any>;
   loadGameMap(arrOfActors: Array<any>): void;
 }
 

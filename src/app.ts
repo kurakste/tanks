@@ -2,11 +2,6 @@ import imgLoader from './helpers/imgLoader';
 import AppInterface from './intarfaces/app';
 import spriteseetsImageInterface from './intarfaces/spritesheetObject';
 
-/**
- * 
- * @param {String} name Just any name
- * @param {Number} fps how many tymes per second we will update game.
- */
 class App implements AppInterface {
   spriteSheets: Array<any>;
   name: string;
