@@ -1,5 +1,6 @@
 import spriteseetsImageInterface from './objects/spritesheetObject';
 import KeyboardStates from './KeyboardStates';
+import Actores from './objects/actors/Actores';
 
 interface Game {
   spriteSheets: Array<any>;
@@ -11,6 +12,8 @@ interface Game {
 
   _now: number;
   _lt: number;
+  _subscribers: Object;
+
   clock(): void;
   loadSpritesSheets(arr: Array<spriteseetsImageInterface>):void;
   loadGameMap(arrOfActors: Array<any>): void;

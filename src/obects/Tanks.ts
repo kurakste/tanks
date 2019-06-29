@@ -1,7 +1,9 @@
 import imgLoader from '../helpers/imgLoader';
-import Games from '../intarfaces/Games';
-import KeyboardStates from '../intarfaces/KeyboardStates';
+import Games from '../interfaces/Games';
+import KeyboardStates from '../interfaces/KeyboardStates';
 import KeyboardState from './KeyBoardState';
+import Actores from '../interfaces/objects/actors/Actores';
+import subscriptions from '../interfaces/Subscriptions';
 
 class Tanks implements Games {
   spriteSheets: Array<any>;
@@ -10,6 +12,8 @@ class Tanks implements Games {
   name: string;
   fps: number;
   work: boolean;
+  _subscribers: Object;
+  _drawEventSubscribers: Array<Actores>;
   _now: number;
   _lt: number;
 
@@ -23,6 +27,9 @@ class Tanks implements Games {
     this._now = Date.now();
     this._lt = Date.now();
     this.clock = this.clock.bind(this);
+    this._subscribers = {};
+    this._subscribers[subscriptions.clock] = [];
+    this._subscribers[subscriptions.draw] = [];
   }
 
   clock() {
@@ -34,16 +41,21 @@ class Tanks implements Games {
   }
 
   async loadSpritesSheets(arrOfSpritesheets: Array<any>) {
-    const promBound = arrOfSpritesheets.map((img:any) => imgLoader(img.src));
-    const data:Array<any> = await Promise.all(promBound);
-    const out = arrOfSpritesheets.map((el:any, i:number) => {
+    const promBound = arrOfSpritesheets.map((img: any) => imgLoader(img.src));
+    const data: Array<any> = await Promise.all(promBound);
+    const out = arrOfSpritesheets.map((el: any, i: number) => {
       return { name: el.name, img: data[i] }
     });
     this.spriteSheets = out;
   }
 
-  loadGameMap(arrOfActors: Array<any>) {
+  loadGameMap(arrOfActors: Array<Actores>) {
 
+  }
+
+  addFigure(figure: Actores) {
+    console.log('you ask add this figure:', figure);
+    
   }
 
   init() {

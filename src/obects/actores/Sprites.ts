@@ -1,5 +1,5 @@
-import Sprites from '../../intarfaces/objects/actors/Sprites';
-import Game from '../../intarfaces/Games';
+import Sprites from '../../interfaces/objects/actors/Sprites';
+import Game from '../../interfaces/Games';
 
 export default class Sprite implements Sprites {
   spritesSheetCardName: string;

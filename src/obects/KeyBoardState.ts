@@ -1,4 +1,4 @@
-import KeyboardStates from '../intarfaces/KeyboardStates';
+import KeyboardStates from '../interfaces/KeyboardStates';
 
 export default class KeyboardState implements KeyboardStates {
   LeftKeyPressed: boolean;
