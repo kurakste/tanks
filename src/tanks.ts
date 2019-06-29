@@ -1,6 +1,6 @@
 import imgLoader from './helpers/imgLoader';
 import Game from './intarfaces/Game';
-import spriteseetsImageInterface from './intarfaces/spritesheetObject';
+import spriteseetsImageInterface from './intarfaces/objects/spritesheetObject';
 
 class Tanks implements Game {
   spriteSheets: Array<any>;

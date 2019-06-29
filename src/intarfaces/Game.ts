@@ -1,4 +1,4 @@
-import spriteseetsImageInterface from './spritesheetObject';
+import spriteseetsImageInterface from './objects/spritesheetObject';
 
 interface Game {
   spriteSheets: Array<any>;
