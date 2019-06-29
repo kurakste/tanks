@@ -1,12 +1,20 @@
 import imgLoader from './helpers/imgLoader';
+import AppInterface from './intarfaces/app';
+import spriteseetsImageInterface from './intarfaces/spritesheetObject';
+
 /**
  * 
  * @param {String} name Just any name
  * @param {Number} fps how many tymes per second we will update game.
  */
-class App {
-
-  constructor(name, fps) {
+class App implements AppInterface {
+  spriteSheets: Array<any>;
+  name: string;
+  fps: number;
+  work: boolean;
+  _now: number;
+  _lt: number;
+  constructor(name: string, fps: number) {
     // [{name, <img>}, ...] 
     this.spriteSheets = []
     this.name = name;
@@ -16,7 +24,7 @@ class App {
     this._lt = Date.now();
     this.clock = this.clock.bind(this);
   }
-  
+
   clock() {
     this._now = Date.now();
     let dt = (this._now - this._lt);
@@ -25,23 +33,16 @@ class App {
     //    console.log('tic', dt);
   }
 
-  /**
-   * arrOfSpritesheets is:
-   *  [
-   *    {name: spritesheetName, src:'./img/sprites-full.png'},
-   *     ...
-   *  ]
-   */
-  async loadSpritesSheets(arrOfSpritesheets) {
-    const promBound = arrOfSpritesheets.map(img => imgLoader(img.src));
-    const data = await Promise.all(promBound);
-    const out = arrOfSpritesheets.map((el, i) => {
+  async loadSpritesSheets(arrOfSpritesheets: Array<any>) {
+    const promBound = arrOfSpritesheets.map((img:any) => imgLoader(img.src));
+    const data:Array<any> = await Promise.all(promBound);
+    const out = arrOfSpritesheets.map((el:any, i:number) => {
       return { name: el.name, img: data[i] }
     });
     this.spriteSheets = out;
   }
 
-  loadGameMap(arrOfActors) {
+  loadGameMap(arrOfActors: Array<any>) {
 
   }
 
