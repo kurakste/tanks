@@ -24,7 +24,7 @@ export default class Tank extends Actor {
       "fullSpriteSheet", tankRight, [0, 1, 2, 3, 4, 5, 6]
     );
 
-    super(xpos, ypos, 1, [tankDowndSpr, tankUpSpr, tankLeftSpr, tankRightSpr]);
+    super(xpos, ypos, 3, [tankDowndSpr, tankUpSpr, tankLeftSpr, tankRightSpr]);
     this.subsctiptions.push(sub.keyboard);
     this.direction = dir.Up;
     this.dirToSprite = {};
@@ -44,10 +44,10 @@ export default class Tank extends Actor {
   }
   move() {
     switch (this.direction) {
-      case dir.Left: this.xpos = this.xpos - 2; break;
-      case dir.Right: this.xpos = this.xpos + 2; break;
-      case dir.Up: this.ypos = this.ypos - 2; break;
-      case dir.Down: this.ypos = this.ypos + 2; break;
+      case dir.Left: this.xpos = this.xpos - this.speed; break;
+      case dir.Right: this.xpos = this.xpos + this.speed; break;
+      case dir.Up: this.ypos = this.ypos - this.speed; break;
+      case dir.Down: this.ypos = this.ypos + this.speed; break;
     }
   }
   getSprite(): Sprites {
