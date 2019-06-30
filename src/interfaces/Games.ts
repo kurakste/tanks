@@ -19,6 +19,7 @@ interface Game {
   loadGameMap(arrOfActors: Array<any>): void;
   addFigure(figure: Actores):void;
   removeFigure(figure: Actores):void;
+  drawField():void;
   init():void;
 }
 
