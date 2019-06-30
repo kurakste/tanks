@@ -12,8 +12,8 @@ class Tanks implements Games {
   name: string;
   fps: number;
   work: boolean;
-  _subscribers: Object;
-  _drawEventSubscribers: Array<Actores>;
+  _subscribers: any;
+  _actors: Array<any>;
   _now: number;
   _lt: number;
 
@@ -27,9 +27,10 @@ class Tanks implements Games {
     this._now = Date.now();
     this._lt = Date.now();
     this.clock = this.clock.bind(this);
+    this._subscribers = [];
     this._subscribers = {};
-    //this._subscribers[subscriptions.clock] = [];
-    //this._subscribers[subscriptions.draw] = [];
+    this._subscribers[subscriptions.clock] = [];
+    this._subscribers[subscriptions.draw] = [];
   }
 
   clock() {
@@ -54,8 +55,14 @@ class Tanks implements Games {
   }
 
   addFigure(figure: Actores) {
-    console.log('you ask add this figure:', figure);
-    
+    figure.subsctiptions.map(sub => {
+      console.log('Ask this ', sub)
+      this._subscribers[sub].push(figure);
+    });
+  }
+
+  removeFigure(figure: Actores) {
+  
   }
 
   init() {

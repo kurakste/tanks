@@ -12,11 +12,13 @@ interface Game {
 
   _now: number;
   _lt: number;
-  _subscribers: Object;
+  _subscribers: any;
 
   clock(): void;
   loadSpritesSheets(arr: Array<spriteseetsImageInterface>):void;
   loadGameMap(arrOfActors: Array<any>): void;
+  addFigure(figure: Actores):void;
+  removeFigure(figure: Actores):void;
   init():void;
 }
 
