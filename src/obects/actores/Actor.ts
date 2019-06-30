@@ -34,7 +34,6 @@ export default class Actor implements Actors {
 
   clock() {
     const sprite = this.getSprite();
-    console.log('clock from Actor');
     sprite.clock();
   }
 
@@ -45,6 +44,10 @@ export default class Actor implements Actors {
   }
   getSprite(): Sprites {
     return this.sprites[3];
+  }
+
+  keyboardHandler(evnt: string):void {
+    console.log('keyboardHandler need to be defined.');
   }
 
 }

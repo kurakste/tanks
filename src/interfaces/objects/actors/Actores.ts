@@ -16,4 +16,5 @@ export default interface Actores {
   move(direction: Directions, game: Game): void;
   clock(): void;
   draw(game: Game):void;
+  keyboardHandler(event: string):void;
 }

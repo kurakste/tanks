@@ -19,7 +19,7 @@ class Tanks implements Games {
   _actors: Array<any>;
   _now: number;
   _lt: number;
-  
+
   constructor(name: string, speed: number, wd: number, hg: number, bgcol: string, ctx: CanvasRenderingContext2D) {
     // [{name, <img>}, ...] 
     this.spriteSheets = []
@@ -33,9 +33,11 @@ class Tanks implements Games {
     this._now = Date.now();
     this._lt = Date.now();
     this.clock = this.clock.bind(this);
+    this.keyboardHandler = this.keyboardHandler.bind(this);
     this._subscribers = {};
     this._subscribers[subscriptions.clock] = [];
     this._subscribers[subscriptions.draw] = [];
+    this._subscribers[subscriptions.keyboard] = [];
     this.ctx = ctx;
   }
 
@@ -45,12 +47,12 @@ class Tanks implements Games {
     if (dt <= this.fps * 1000) return;
     this._lt = Date.now();
     //    console.log('tic', dt);
-    this._subscribers[subscriptions.clock].map((act:Actores) => {
+    this._subscribers[subscriptions.clock].map((act: Actores) => {
       act.clock();
     });
     this.drawField();
   }
-  
+
   async loadSpritesSheets(arrOfSpritesheets: Array<any>) {
     const promBound = arrOfSpritesheets.map((img: any) => imgLoader(img.src));
     const data: Array<any> = await Promise.all(promBound);
@@ -59,34 +61,56 @@ class Tanks implements Games {
     });
     this.spriteSheets = out;
   }
-  
+
   loadGameMap(arrOfActors: Array<Actores>) {
-    
+
   }
-  
+
   addFigure(figure: Actores) {
     figure.subsctiptions.map(sub => {
       this._subscribers[sub].push(figure);
     });
   }
-  
+
   removeFigure(figure: Actores) {
     for (let key in this._subscribers) {
-      let _arr = this._subscribers[key].filter((el:Actores) => el.id !== figure.id);
+      let _arr = this._subscribers[key].filter((el: Actores) => el.id !== figure.id);
       this._subscribers[key] = _arr;
-    } 
+    }
   }
 
-  clear():void {
+  clear(): void {
     this.ctx.fillStyle = this.backgroud; //backgroud;
     this.ctx.fillRect(0, 0, this.width, this.height);
   }
-  
+
   drawField(): void {
     this.clear();
-    this._subscribers[subscriptions.draw].map((act:Actores) => {
+    this._subscribers[subscriptions.draw].map((act: Actores) => {
       act.draw(this);
     });
+  }
+
+
+
+  keyboardHandler(event: KeyboardEvent): void {
+    if (event.type === 'keyup') return;
+    switch (event.code) {
+      case 'KeyH': this.keyboardEvent('left'); break;
+      case 'KeyL': this.keyboardEvent('right'); break;
+      case 'KeyJ': this.keyboardEvent('up'); break;
+      case 'KeyK': this.keyboardEvent('down'); break;
+      case 'KeyA': this.keyboardEvent('fier'); break;
+    }
+  };
+
+  keyboardEvent(keyEvent:string) {
+    console.log('i handle event keyboard', this._subscribers[subscriptions.keyboard]);
+    this._subscribers[subscriptions.keyboard] && this._subscribers[subscriptions.keyboard].map((act: Actores) => {
+      act.keyboardHandler(keyEvent);
+    });
+
+
   }
 
   init() {
