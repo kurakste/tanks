@@ -27,7 +27,6 @@ class Tanks implements Games {
     this._now = Date.now();
     this._lt = Date.now();
     this.clock = this.clock.bind(this);
-    this._subscribers = [];
     this._subscribers = {};
     this._subscribers[subscriptions.clock] = [];
     this._subscribers[subscriptions.draw] = [];
@@ -62,6 +61,11 @@ class Tanks implements Games {
   }
 
   removeFigure(figure: Actores) {
+    for (let key in this._subscribers) {
+      let _arr = this._subscribers[key].filter((el:Actores) => el.id !== figure.id);
+      this._subscribers[key] = _arr;
+    } 
+    console.log('i remove: ', this);
   
   }
 

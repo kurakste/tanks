@@ -12,6 +12,5 @@ import Tank from './obects/Tank';
   await tanks.loadSpritesSheets(sprSheetsArray);
   tanks.addFigure(tank);
   tanks.init();
-
   setInterval(tanks.clock, 8)
 })();
