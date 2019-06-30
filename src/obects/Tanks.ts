@@ -45,6 +45,9 @@ class Tanks implements Games {
     if (dt <= this.fps * 1000) return;
     this._lt = Date.now();
     //    console.log('tic', dt);
+    this._subscribers[subscriptions.clock].map((act:Actores) => {
+      act.clock();
+    });
     this.drawField();
   }
   
@@ -63,7 +66,6 @@ class Tanks implements Games {
   
   addFigure(figure: Actores) {
     figure.subsctiptions.map(sub => {
-      console.log('Ask this ', sub)
       this._subscribers[sub].push(figure);
     });
   }
@@ -73,8 +75,6 @@ class Tanks implements Games {
       let _arr = this._subscribers[key].filter((el:Actores) => el.id !== figure.id);
       this._subscribers[key] = _arr;
     } 
-    console.log('i remove: ', this);
-    
   }
 
   clear():void {
@@ -84,6 +84,9 @@ class Tanks implements Games {
   
   drawField(): void {
     this.clear();
+    this._subscribers[subscriptions.draw].map((act:Actores) => {
+      act.draw(this);
+    });
   }
 
   init() {
