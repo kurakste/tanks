@@ -5,6 +5,7 @@ import Subscriptions from '../../Subscriptions';
 
 
 export default interface Actores {
+  id: string;
   xpos: number;
   ypos: number;
   xsize: number;
