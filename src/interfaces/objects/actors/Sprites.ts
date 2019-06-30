@@ -6,5 +6,6 @@ export default interface Sprites {
   pictureSequence: Array<number>;
   speed: number;
   _last: number;
+  clock(): void;
   draw(xpos: number, ypos: number, game: Game): void;
 }

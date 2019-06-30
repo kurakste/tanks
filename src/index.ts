@@ -10,7 +10,7 @@ const ctx  = canva.getContext('2d');
 
   const tank = new Tank(20, 30);
   
-  const tanks = new Tanks('Tanks', 1, 600, 600, 'lightblue', ctx);
+  const tanks = new Tanks('Tanks', 6, 600, 600, 'lightblue', ctx);
   await tanks.loadSpritesSheets(sprSheetsArray);
   tanks.addFigure(tank);
   tanks.init();

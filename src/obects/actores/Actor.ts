@@ -20,7 +20,7 @@ export default class Actor implements Actors {
   constructor(
     xpos: number, ypos: number, speed: number, sprites: Array<Sprites>
   ) {
-    this.id = randomStr({length: 20});
+    this.id = randomStr({ length: 20 });
     this.xpos = xpos;
     this.ypos = ypos;
     this.sprites = sprites;
@@ -33,12 +33,18 @@ export default class Actor implements Actors {
   }
 
   clock() {
+    const sprite = this.getSprite();
     console.log('clock from Actor');
+    sprite.clock();
   }
 
-  draw(game: Game) {
-    console.log('hellow from draw from Actor');
 
+  draw(game: Game) {
+    const sprite = this.getSprite()
+    sprite.draw(this.xpos, this.ypos, game);
+  }
+  getSprite(): Sprites {
+    return this.sprites[3];
   }
 
 }
