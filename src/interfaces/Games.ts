@@ -8,7 +8,8 @@ interface Game {
   name: string;
   fps: number;
   work: boolean;
-  keyboardState: KeyboardStates;
+  //keyboardState: KeyboardStates;
+  //keyPressed: string | boolean;
 
   _now: number;
   _lt: number;

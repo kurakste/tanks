@@ -1,7 +1,10 @@
 import Actor from "../actores/Actor";
 import Sprite from "../actores/Sprites";
 import Sprites from '../../interfaces/objects/actors/Sprites';
-import { tankDown, tankLeft, tankRight, tankUp } from './pictureMap';
+import {
+  tankGoDown, tankGoLeft, tankGoRight, tankGoUp,
+  tankDown, tankLeft, tankRight, tankUp
+} from './pictureMap';
 import dir from '../../interfaces/objects/actors/Directions';
 import sub from '../../interfaces/Subscriptions';
 
@@ -9,22 +12,40 @@ export default class Tank extends Actor {
   direction: dir;
   dirToSprite: any;
   activeSprite: Sprites;
+  moving: boolean;
 
   constructor(xpos: number, ypos: number) {
-    const tankDowndSpr = new Sprite(
-      "fullSpriteSheet", tankDown, [0, 1, 2, 3, 4, 5, 6]
+    const tankDownSpr = new Sprite(
+      "fullSpriteSheet", tankDown, [0]
     );
     const tankUpSpr = new Sprite(
-      "fullSpriteSheet", tankUp, [0, 1, 2, 3, 4, 5, 6]
+      "fullSpriteSheet", tankUp, [0]
     );
     const tankLeftSpr = new Sprite(
-      "fullSpriteSheet", tankLeft, [0, 1, 2, 3, 4, 5, 6]
+      "fullSpriteSheet", tankLeft, [0]
     );
     const tankRightSpr = new Sprite(
-      "fullSpriteSheet", tankRight, [0, 1, 2, 3, 4, 5, 6]
+      "fullSpriteSheet", tankRight, [0]
+    );
+    const tankGoDowndSpr = new Sprite(
+      "fullSpriteSheet", tankGoDown, [0, 1, 2, 3, 4, 5, 6]
+    );
+    const tankGoUpSpr = new Sprite(
+      "fullSpriteSheet", tankGoUp, [0, 1, 2, 3, 4, 5, 6]
+    );
+    const tankGoLeftSpr = new Sprite(
+      "fullSpriteSheet", tankGoLeft, [0, 1, 2, 3, 4, 5, 6]
+    );
+    const tankGoRightSpr = new Sprite(
+      "fullSpriteSheet", tankGoRight, [0, 1, 2, 3, 4, 5, 6]
     );
 
-    super(xpos, ypos, 3, [tankDowndSpr, tankUpSpr, tankLeftSpr, tankRightSpr]);
+
+    super(xpos, ypos, 3, [
+      tankGoDowndSpr, tankGoUpSpr, tankGoLeftSpr, tankGoRightSpr,
+      tankDownSpr, tankUpSpr, tankLeftSpr, tankRightSpr
+    ]);
+    this.moving = false;
     this.subsctiptions.push(sub.keyboard);
     this.direction = dir.Up;
     this.dirToSprite = {};
@@ -32,17 +53,27 @@ export default class Tank extends Actor {
     this.dirToSprite[dir.Down] = 0;
     this.dirToSprite[dir.Left] = 2;
     this.dirToSprite[dir.Right] = 3;
-    this.activeSprite = tankUpSpr;
+    this.activeSprite = tankDownSpr;
   }
-  keyboardHandler(event: string) {
-    console.log('Tank get keboard event:', event);
-    if (event === 'left') this.direction = dir.Left; // this.sprites[2] ;
-    if (event === 'right') this.direction = dir.Right;// this.sprites[3];
-    if (event === 'up') this.direction = dir.Up; // this.sprites[1];
-    if (event === 'down') this.direction = dir.Down;// this.sprites[0];
-    this.move();
+  keyboardHandler(event: string, type: string) {
+    console.log('Tank get keboard event>', event, type );
+    if (type==='keydown') {
+      if (event === 'KeyH') this.direction = dir.Left; // this.sprites[2] ;
+      if (event === 'KeyL') this.direction = dir.Right;// this.sprites[3];
+      if (event === 'KeyJ') this.direction = dir.Up; // this.sprites[1];
+      if (event === 'KeyK') this.direction = dir.Down;// this.sprites[0];
+      this.move();
+    } else {
+      this.stop();
+    }
   }
+
+  stop() {
+    this.moving = false;
+  }
+
   move() {
+    this.moving = true;
     switch (this.direction) {
       case dir.Left: this.xpos = this.xpos - this.speed; break;
       case dir.Right: this.xpos = this.xpos + this.speed; break;
@@ -50,14 +81,25 @@ export default class Tank extends Actor {
       case dir.Down: this.ypos = this.ypos + this.speed; break;
     }
   }
+
   getSprite(): Sprites {
     let spr;
-    switch (this.direction) {
-      case dir.Left: spr = this.sprites[2]; break;
-      case dir.Right: spr = this.sprites[3]; break;
-      case dir.Up: spr = this.sprites[1]; break;
-      case dir.Down: spr = this.sprites[0]; break;
+    //console.log(this.moving);
+    if (this.moving) {
+      switch (this.direction) {
+        case dir.Left: spr = this.sprites[2]; break;
+        case dir.Right: spr = this.sprites[3]; break;
+        case dir.Up: spr = this.sprites[1]; break;
+        case dir.Down: spr = this.sprites[0]; break;
+      }
+    } else {
+      switch (this.direction) {
+        case dir.Left: spr = this.sprites[6]; break;
+        case dir.Right: spr = this.sprites[7]; break;
+        case dir.Up: spr = this.sprites[5]; break;
+        case dir.Down: spr = this.sprites[4]; break;
     }
-    return spr;
   }
+  return spr;
+}
 }

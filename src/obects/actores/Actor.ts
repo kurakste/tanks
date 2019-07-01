@@ -46,7 +46,7 @@ export default class Actor implements Actors {
     return this.sprites[3];
   }
 
-  keyboardHandler(evnt: string):void {
+  keyboardHandler(evnt: string, type: string):void {
     console.log('keyboardHandler need to be defined.');
   }
 

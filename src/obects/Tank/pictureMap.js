@@ -1,5 +1,21 @@
 const tankUp = [
   { x: 0 + 14 * 32, y: 0, width: 32, height: 32, },
+]
+
+const tankDown = [
+  { x: 0 + 14 * 32, y: 0 + 4 * 32, width: 32, height: 32, },
+]
+
+const tankLeft = [
+  { x: 0 + 17 * 32, y: 0 + 2 * 32, width: 32, height: 32, },
+]
+
+const tankRight = [
+  { x: 0 + 17 * 32, y: 0 + 3 * 32, width: 32, height: 32, },
+]
+
+const tankGoUp = [
+  { x: 0 + 14 * 32, y: 0, width: 32, height: 32, },
   { x: 0 + 15 * 32, y: 0, width: 32, height: 32, },
   { x: 0 + 16 * 32, y: 0, width: 32, height: 32, },
   { x: 0 + 17 * 32, y: 0, width: 32, height: 32, },
@@ -8,7 +24,8 @@ const tankUp = [
   { x: 0 + 20 * 32, y: 0, width: 32, height: 32, },
   { x: 0 + 21 * 32, y: 0, width: 32, height: 32, },
 ]
-const tankDown = [
+
+const tankGoDown = [
   { x: 0 + 15 * 32, y: 32, width: 32, height: 32, },
   { x: 0 + 16 * 32, y: 32, width: 32, height: 32, },
   { x: 0 + 17 * 32, y: 32, width: 32, height: 32, },
@@ -18,7 +35,7 @@ const tankDown = [
   { x: 0 + 21 * 32, y: 32, width: 32, height: 32, },
 ]
 
-const tankRight = [
+const tankGoRight = [
   { x: 0 + 15 * 32, y: 0 * 32 + 64, width: 32, height: 32, },
   { x: 0 + 15 * 32, y: 0 * 32 + 64, width: 32, height: 32, },
   { x: 0 + 15 * 32, y: 1 * 32 + 64, width: 32, height: 32, },
@@ -29,7 +46,7 @@ const tankRight = [
   { x: 0 + 15 * 32, y: 6 * 32 + 64, width: 32, height: 32, },
 ]
 
-const tankLeft = [
+const tankGoLeft = [
   { x: 0 + 16 * 32, y: 0 * 32 + 64, width: 32, height: 32, },
   { x: 0 + 16 * 32, y: 1 * 32 + 64, width: 32, height: 32, },
   { x: 0 + 16 * 32, y: 2 * 32 + 64, width: 32, height: 32, },
@@ -39,4 +56,7 @@ const tankLeft = [
   { x: 0 + 16 * 32, y: 6 * 32 + 64, width: 32, height: 32, },
 ]
 
-export {tankDown, tankLeft, tankRight, tankUp}
+export {
+  tankDown, tankLeft, tankRight, tankUp,
+  tankGoDown, tankGoLeft, tankGoRight, tankGoUp
+}
