@@ -81,5 +81,5 @@ ballDown  = [
 export {
   tankDown, tankLeft, tankRight, tankUp,
   tankGoDown, tankGoLeft, tankGoRight, tankGoUp,
-  fire
+  fire, ballLeft, ballRight, ballUp, ballDown
 }
