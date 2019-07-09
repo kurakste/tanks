@@ -8,9 +8,10 @@ const ctx = canva.getContext('2d');
 
 (async function () {
 
-  const tank = new Tank(20, 30);
-
+  
   const tanks = new Tanks('Tanks', 25 , 600, 600, 'lightblue', ctx);
+
+  const tank = new Tank(20, 30, tanks);
   await tanks.loadSpritesSheets(sprSheetsArray);
   tanks.addFigure(tank);
   tanks.init();

@@ -7,14 +7,17 @@ import {
 } from './pictureMap';
 import dir from '../../interfaces/objects/actors/Directions';
 import sub from '../../interfaces/Subscriptions';
+import Game from "../../interfaces/Games";
+import Fire from './Fire';
 
 export default class Tank extends Actor {
   direction: dir;
   dirToSprite: any;
   activeSprite: Sprites;
   moving: boolean;
+  game: Game;
 
-  constructor(xpos: number, ypos: number) {
+  constructor(xpos: number, ypos: number, game: Game) {
     const tankDownSpr = new Sprite(
       "fullSpriteSheet", tankDown, [0]
     );
@@ -54,6 +57,7 @@ export default class Tank extends Actor {
     this.dirToSprite[dir.Left] = 2;
     this.dirToSprite[dir.Right] = 3;
     this.activeSprite = tankDownSpr;
+    this.game = game;
   }
 
   keyboardHandler(event: string, type: string) {
@@ -75,7 +79,19 @@ export default class Tank extends Actor {
     this.moving = false;
   }
   fier() {
-    console.log('Fierrrrr!!!!!');
+    const delta = 30;
+    const shiftMatrix: { [key in dir]: any } = {
+      [dir.Up]: [0, - delta],
+      [dir.Down]: [0, delta],
+      [dir.Left]: [- delta, 0],
+      [dir.Right]: [delta, 0],
+    }
+
+    let [dx, dy] = shiftMatrix[this.direction];
+    const x = this.xpos + dx;
+    const y = this.ypos + dy;
+    const fire = new Fire(x, y, this.game);
+    this.game.addFigure(fire)
   }
   move() {
     this.moving = true;

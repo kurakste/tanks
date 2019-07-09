@@ -43,7 +43,7 @@ export default class Actor implements Actors {
     sprite.draw(this.xpos, this.ypos, game);
   }
   getSprite(): Sprites {
-    return this.sprites[3];
+    return this.sprites[0];
   }
 
   keyboardHandler(evnt: string, type: string):void {

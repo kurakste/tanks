@@ -11,7 +11,7 @@ const tankLeft = [
 ]
 
 const tankRight = [
-  { x: 0 + 17 * 32, y: 0 + 3 * 32, width: 32, height: 32, },
+  { x: 0 + 19 * 32, y: 0 + 3 * 32, width: 32, height: 32, },
 ]
 
 const tankGoUp = [
@@ -56,7 +56,14 @@ const tankGoLeft = [
   { x: 0 + 16 * 32, y: 6 * 32 + 64, width: 32, height: 32, },
 ]
 
+const fire = [
+  { x: 0 + 0 * 32, y: 0 + 0 * 32, width: 30, height: 30, }, 
+  { x: 0 + 1 * 32, y: 0 + 0 * 32, width: 30, height: 30, }, 
+  { x: 0 + 2 * 32, y: 0 + 0 * 32, width: 30, height: 30, }, 
+]
+
 export {
   tankDown, tankLeft, tankRight, tankUp,
-  tankGoDown, tankGoLeft, tankGoRight, tankGoUp
+  tankGoDown, tankGoLeft, tankGoRight, tankGoUp,
+  fire
 }
