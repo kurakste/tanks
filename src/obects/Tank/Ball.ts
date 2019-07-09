@@ -1,6 +1,7 @@
 import Actor from "../actores/Actor";
 import Sprites from '../../interfaces/objects/actors/Sprites';
 import Sprite from "../actores/Sprites";
+import Dir from '../../interfaces/objects/actors/Directions';
 
 import { ballLeft, ballRight, ballUp, ballDown } from './pictureMap';
 import Game from "../../interfaces/Games";
@@ -11,24 +12,61 @@ export default class Fier extends Actor {
   activeSprite: Sprites;
   game: Game;
   tick: number;
+  direction: Dir;
 
-  constructor(xpos: number, ypos: number, game: Game) {
+  constructor(xpos: number, ypos: number, game: Game, dir: Dir) {
 
     const ballLeftSpr = new Sprite(
-      "fullSpriteSheet", ballLeft, [0, 1, 2, 1, 0]
+      "fullSpriteSheet", ballLeft, [0]
+    );
+    
+    const ballRightSpr = new Sprite(
+      "fullSpriteSheet", ballRight, [0]
+    );
+
+    const ballUpSpr = new Sprite(
+      "fullSpriteSheet", ballUp, [0]
+    );
+    
+    const ballDownSpr = new Sprite(
+      "fullSpriteSheet", ballDown, [0]
     );
 
 
-    super(xpos, ypos, 3, [fireSpr]);
+    super(xpos, ypos, 3, [ballLeftSpr, ballRightSpr, ballDownSpr, ballUpSpr]);
 
-    this.activeSprite = fireSpr;
+    this.activeSprite = ballLeftSpr;
     this.game = game;
     this.tick = 0;
+    this.direction = dir;
   }
+
+  getSprite():Sprites {
+
+    return 
+  }
+
   clock() {
-    if (this.tick>=4) this.game.removeFigure(this);
-    super.clock();
-    ++this.tick
+    // if (this.tick>=4) this.game.removeFigure(this);
+    // super.clock();
+    // ++this.tick
+      const delta = 5;
+      const shiftMatrix: { [key in Dir]: any } = {
+      [Dir.Up]: [0, - delta],
+      [Dir.Down]: [0, delta],
+      [Dir.Left]: [- delta, 0],
+      [Dir.Right]: [delta, 0],
+    }
+
+    let [dx, dy] = shiftMatrix[this.direction];
+    const x = this.xpos + dx;
+    const y = this.ypos + dy;
+    this.xpos = x;
+    this.ypos = y;
+    if (this.xpos<=0 || this.ypos<=0|| this.xpos>=this.game.height ||
+       this.ypos>=this.game.width ) {
+         this.game.removeFigure(this);
+       }
   }
 
 }

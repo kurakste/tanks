@@ -3,7 +3,6 @@ import Game from '../../interfaces/Games';
 import Sprites from '../../interfaces/objects/actors/sprites';
 import Directions from '../../interfaces/objects/actors/Directions';
 import subsctiptions from '../../interfaces/Subscriptions';
-//import randomStr from 'crypto-random-string';
 
 const randomStr = require('crypto-random-string');
 

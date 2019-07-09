@@ -9,6 +9,7 @@ import dir from '../../interfaces/objects/actors/Directions';
 import sub from '../../interfaces/Subscriptions';
 import Game from "../../interfaces/Games";
 import Fire from './Fire';
+import Ball from './Ball';
 
 export default class Tank extends Actor {
   direction: dir;
@@ -91,7 +92,9 @@ export default class Tank extends Actor {
     const x = this.xpos + dx;
     const y = this.ypos + dy;
     const fire = new Fire(x, y, this.game);
-    this.game.addFigure(fire)
+    this.game.addFigure(fire);
+    const ball = new Ball(x,y,this.game, this.direction);
+    this.game.addFigure(ball);
   }
   move() {
     this.moving = true;

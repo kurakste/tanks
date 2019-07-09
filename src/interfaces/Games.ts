@@ -8,12 +8,15 @@ interface Game {
   name: string;
   fps: number;
   work: boolean;
+  height: number;
+  width: number;
   //keyboardState: KeyboardStates;
   //keyPressed: string | boolean;
 
   _now: number;
   _lt: number;
   _subscribers: any;
+
 
   clock(): void;
   loadSpritesSheets(arr: Array<spriteseetsImageInterface>):void;
