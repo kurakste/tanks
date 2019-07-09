@@ -10,8 +10,6 @@ interface Game {
   work: boolean;
   height: number;
   width: number;
-  //keyboardState: KeyboardStates;
-  //keyPressed: string | boolean;
 
   _now: number;
   _lt: number;

@@ -53,9 +53,6 @@ export default class Fier extends Actor {
   }
 
   clock() {
-    // if (this.tick>=4) this.game.removeFigure(this);
-    // super.clock();
-    // ++this.tick
       const delta = 5;
       const shiftMatrix: { [key in Dir]: any } = {
       [Dir.Up]: [0, - delta],
