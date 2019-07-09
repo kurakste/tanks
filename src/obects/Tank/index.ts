@@ -40,11 +40,11 @@ export default class Tank extends Actor {
       "fullSpriteSheet", tankGoRight, [0, 1, 2, 3, 4, 5, 6]
     );
 
-
     super(xpos, ypos, 3, [
       tankGoDowndSpr, tankGoUpSpr, tankGoLeftSpr, tankGoRightSpr,
       tankDownSpr, tankUpSpr, tankLeftSpr, tankRightSpr
     ]);
+
     this.moving = false;
     this.subsctiptions.push(sub.keyboard);
     this.direction = dir.Up;
@@ -55,14 +55,17 @@ export default class Tank extends Actor {
     this.dirToSprite[dir.Right] = 3;
     this.activeSprite = tankDownSpr;
   }
+
   keyboardHandler(event: string, type: string) {
-    console.log('Tank get keboard event>', event, type );
-    if (type==='keydown') {
-      if (event === 'KeyH') this.direction = dir.Left; // this.sprites[2] ;
-      if (event === 'KeyL') this.direction = dir.Right;// this.sprites[3];
-      if (event === 'KeyJ') this.direction = dir.Up; // this.sprites[1];
-      if (event === 'KeyK') this.direction = dir.Down;// this.sprites[0];
-      this.move();
+    const keyMatrix: { [key: string]: any } = {};
+    keyMatrix['KeyH'] = () => { this.direction = dir.Left; this.move() };
+    keyMatrix['KeyL'] = () => { this.direction = dir.Right; this.move() };
+    keyMatrix['KeyJ'] = () => { this.direction = dir.Up; this.move() };
+    keyMatrix['KeyK'] = () => { this.direction = dir.Down; this.move() };
+    keyMatrix['KeyA'] = () => { this.fier(); };
+
+    if (type === 'keydown') {
+      keyMatrix[event] && keyMatrix[event]();
     } else {
       this.stop();
     }
@@ -71,7 +74,9 @@ export default class Tank extends Actor {
   stop() {
     this.moving = false;
   }
-
+  fier() {
+    console.log('Fierrrrr!!!!!');
+  }
   move() {
     this.moving = true;
     switch (this.direction) {
@@ -98,8 +103,8 @@ export default class Tank extends Actor {
         case dir.Right: spr = this.sprites[7]; break;
         case dir.Up: spr = this.sprites[5]; break;
         case dir.Down: spr = this.sprites[4]; break;
+      }
     }
+    return spr;
   }
-  return spr;
-}
 }
