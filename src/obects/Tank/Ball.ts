@@ -9,7 +9,7 @@ import Actores from "../../interfaces/Actores";
 import Hitter from "../../interfaces/Hitter";
 
 
-export default class Fier extends Actor implements Actores, Hitter {
+export default class Ball extends Actor implements Actores, Hitter {
 
   activeSprite: Sprites;
   game: Game;

@@ -94,24 +94,26 @@ export default class Tank extends Actor {
     const y = this.ypos + dy;
     const fire = new Fire(x, y, this.game);
     this.game.addFigure(fire);
-    const ball = new Ball(x,y,this.game, this.direction);
+    const ball = new Ball(x, y, this.game, this.direction);
     this.game.addFigure(ball);
   }
   move() {
-    //TODO: refactor this switch
     let newxpos = this.xpos;
     let newypos = this.ypos;
-    switch (this.direction) {
-      case dir.Left: newxpos = this.xpos - this.speed; break;
-      case dir.Right: newxpos = this.xpos + this.speed; break;
-      case dir.Up: newypos = this.ypos - this.speed; break;
-      case dir.Down: newypos = this.ypos + this.speed; break;
-    }
+
+    const moveMatrix: { [key in dir]: any } = {
+      [dir.Left]: () => { newxpos = this.xpos - this.speed },
+      [dir.Right]: () => { newxpos = this.xpos + this.speed },
+      [dir.Up]: () => { newypos = this.ypos - this.speed },
+      [dir.Down]: () => { newypos = this.ypos + this.speed },
+    };
+
+    moveMatrix[this.direction]();
     const isFree = this.game.isFieldFree(newxpos, newypos, this.size, this.id);
-    const inGameField = () =>{
-      let res =true;
-      if (newxpos<0 || newxpos>this.game.width-this.size) res = false;
-      if (newypos<0 || newypos>this.game.height-this.size) res = false;
+    const inGameField = () => {
+      let res = true;
+      if (newxpos < 0 || newxpos > this.game.width - this.size) res = false;
+      if (newypos < 0 || newypos > this.game.height - this.size) res = false;
       return res;
     }
     if (isFree && inGameField()) {
@@ -124,23 +126,22 @@ export default class Tank extends Actor {
 
   getSprite(): Sprites {
     let spr;
-    //TODO: refactor this switch
+    const moveMatrix: { [key in dir]: any } = {
+      [dir.Left]: () => { spr = this.sprites[2] },
+      [dir.Right]: () => { spr = this.sprites[3] },
+      [dir.Up]: () => { spr = this.sprites[1] },
+      [dir.Down]: () => { spr = this.sprites[0] },
+    };
 
-    if (this.moving) {
-      switch (this.direction) {
-        case dir.Left: spr = this.sprites[2]; break;
-        case dir.Right: spr = this.sprites[3]; break;
-        case dir.Up: spr = this.sprites[1]; break;
-        case dir.Down: spr = this.sprites[0]; break;
-      }
-    } else {
-      switch (this.direction) {
-        case dir.Left: spr = this.sprites[6]; break;
-        case dir.Right: spr = this.sprites[7]; break;
-        case dir.Up: spr = this.sprites[5]; break;
-        case dir.Down: spr = this.sprites[4]; break;
-      }
-    }
+    const standMatrix: { [key in dir]: any } = {
+      [dir.Left]: () => { spr = this.sprites[6] },
+      [dir.Right]: () => { spr = this.sprites[7] },
+      [dir.Up]: () => { spr = this.sprites[5] },
+      [dir.Down]: () => { spr = this.sprites[4] },
+    };
+
+    this.moving && moveMatrix[this.direction]();
+    (!this.moving) && standMatrix[this.direction]()
     return spr;
   }
 }
