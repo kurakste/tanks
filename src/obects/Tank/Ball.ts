@@ -56,12 +56,9 @@ export default class Fier extends Actor {
   }
 
   checkForHit(newx: number, newy: number) {
-    // we need to know is there an object.
-    // if object happend is it damageable or not.
-    // if damagleable how many damage it gets.
     const impact = this.game.checkForHits(newx, newy, this.size, this.damage, this.id);
 
-    impact && this.game.removeFigure(this); 
+    impact && this.game.removeFigure(this);
 
   }
 
@@ -77,7 +74,7 @@ export default class Fier extends Actor {
     let [dx, dy] = shiftMatrix[this.direction];
     const x = this.xpos + dx;
     const y = this.ypos + dy;
-    this.checkForHit(x,y);
+    this.checkForHit(x, y);
     if (this.xpos <= 0 || this.ypos <= 0 || this.xpos >= this.game.height ||
       this.ypos >= this.game.width) {
       this.game.removeFigure(this);

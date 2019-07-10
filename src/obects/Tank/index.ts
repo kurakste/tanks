@@ -124,7 +124,6 @@ export default class Tank extends Actor {
 
   getSprite(): Sprites {
     let spr;
-    //console.log(this.moving);
     //TODO: refactor this switch
 
     if (this.moving) {

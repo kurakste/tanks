@@ -10,8 +10,6 @@ export default class Actor implements Actors {
   id: string;
   xpos: number;
   ypos: number;
-  // xsize: number;
-  // ysize: number;
   size: number
   speed: number;
   sprites: Array<Sprites>;

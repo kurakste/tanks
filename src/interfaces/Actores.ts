@@ -8,8 +8,6 @@ export default interface Actores {
   id: string;
   xpos: number;
   ypos: number;
-  // xsize: number;
-  // ysize: number;
   size: number;
   speed: number;
   sprites: Array<Sprite>;

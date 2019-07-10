@@ -7,8 +7,6 @@ import boxCollides from '../helpers/boxCollides';
 class Tanks implements Games {
   spriteSheets: Array<any>;
   ctx: CanvasRenderingContext2D;
-  //keyboardState: KeyboardStates;
-  //keyPressed: string | boolean;
   name: string;
   width: number;
   height: number;
@@ -23,10 +21,8 @@ class Tanks implements Games {
 
 
   constructor(name: string, speed: number, wd: number, hg: number, bgcol: string, ctx: CanvasRenderingContext2D) {
-    // [{name, <img>}, ...] 
     this.spriteSheets = []
     this.name = name;
-    //this.keyboardState = new KeyboardState();
     this.fps = 1 / speed;
     this.backgroud = bgcol;
     this.width = wd;
@@ -50,7 +46,6 @@ class Tanks implements Games {
     let dt = (this._now - this._lt);
     if (dt <= this.fps * 1000) return;
     this._lt = Date.now();
-    //    console.log('tic', dt);
     this._subscribers[subscriptions.clock].map((act: Actores) => {
       act.clock();
     });
@@ -123,22 +118,7 @@ class Tanks implements Games {
   }
 
   keyboardHandler(event: KeyboardEvent): void {
-    // if (event.type === 'keyup') {
-    //   this.keyPressed = false;
-    // } else {
-    //   this.keyPressed = event.code;
-    //   let a = this.keyPressed;
-    //   console.log('after presed: ',  a, this);
     this.keyboardEvent(event.code, event.type);
-    // }
-    // switch (event.code) {
-    //   case 'KeyH': this.keyboardEvent('left'); break;
-    //   case 'KeyL': this.keyboardEvent('right'); break;
-    //   case 'KeyJ': this.keyboardEvent('up'); break;
-    //   case 'KeyK': this.keyboardEvent('down'); break;
-    //   case 'KeyA': this.keyboardEvent('fier'); break;
-    // }
-
   };
 
   keyboardEvent(keyEvent: string, evType: string) {
