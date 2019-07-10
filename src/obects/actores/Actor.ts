@@ -1,8 +1,8 @@
 import Actors from '../../interfaces/Actores';
 import Game from '../../interfaces/Games';
 import Sprites from '../../interfaces/Sprites';
-import Directions from '../../interfaces/Directions';
-import subsctiptions from '../../interfaces/Subscriptions';
+import Directions from '../../interfaces/enum/Directions';
+import subsctiptions from '../../interfaces/enum/Subscriptions';
 
 const randomStr = require('crypto-random-string');
 

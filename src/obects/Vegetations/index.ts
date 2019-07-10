@@ -1,7 +1,7 @@
 import Actor from "../actores/Actor";
 import Sprites from '../../interfaces/Sprites';
 import Sprite from "../actores/Sprites";
-import subsctiptions from '../../interfaces/Subscriptions';
+import subsctiptions from '../../interfaces/enum/Subscriptions';
 
 import { vegetation } from './pictureMap';
 import Game from "../../interfaces/Games";

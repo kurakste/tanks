@@ -5,8 +5,8 @@ import {
   tankGoDown, tankGoLeft, tankGoRight, tankGoUp,
   tankDown, tankLeft, tankRight, tankUp
 } from './pictureMap';
-import dir from '../../interfaces/Directions';
-import sub from '../../interfaces/Subscriptions';
+import dir from '../../interfaces/enum/Directions';
+import sub from '../../interfaces/enum/Subscriptions';
 import Game from "../../interfaces/Games";
 import Fire from './Fire';
 import Ball from './Ball';

@@ -1,7 +1,7 @@
 import Sprite from './Sprites';
 import Game from './Games';
-import Directions from './Directions';
-import Subscriptions from './Subscriptions';
+import Directions from './enum/Directions';
+import Subscriptions from './enum/Subscriptions';
 
 
 export default interface Actores {
