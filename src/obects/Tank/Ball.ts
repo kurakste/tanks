@@ -41,6 +41,7 @@ export default class Fier extends Actor {
     this.tick = 0;
     this.direction = dir;
     this.damage = 30;
+    this.size = 15;
   }
 
   getSprite(): Sprites {

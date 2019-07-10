@@ -111,14 +111,15 @@ class Tanks implements Games {
   }
 
   checkForHits(x: number, y: number, size: number, damage: number, attackerId: string): boolean {
+    let hit = false;
     const targets = this._subscribers[subscriptions.hits].filter((el: Actores) => el.id !== attackerId);
     targets.map((tg: Actores) => {
       const pos1 = [tg.xpos, tg.ypos];
       const size1 = tg.size;
-      const hit = boxCollides(pos1, size1, [x, y], size);
+      hit = boxCollides(pos1, size1, [x, y], size);
       hit && tg.getsHit(damage);
     });
-    return false;
+    return hit;
   }
 
   keyboardHandler(event: KeyboardEvent): void {

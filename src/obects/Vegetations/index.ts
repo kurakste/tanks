@@ -29,5 +29,10 @@ export default class Fier extends Actor {
     this.health = 100;
   }
 
+  clock() {
+    (this.health<=0) && this.game.removeFigure(this);
+    super.clock();
+  }
+
   
 }
