@@ -7,8 +7,6 @@ function collides(x: number, y: number, r: number, b: number,
 
 function boxCollides(pos:Array<number>, size:number, 
   pos2:Array<number>, size2: number) {
-  console.log('pos: ', pos)
-  console.log('pos2: ', pos2)
   return collides(pos[0], pos[1],
     pos[0] + size, pos[1] + size,
     pos2[0], pos2[1],

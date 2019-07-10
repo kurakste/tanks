@@ -16,6 +16,7 @@ export default class Actor implements Actors {
   speed: number;
   sprites: Array<Sprites>;
   subsctiptions: Array<subsctiptions>
+  health: number;
 
   constructor(
     xpos: number, ypos: number, speed: number, sprites: Array<Sprites>
@@ -27,6 +28,7 @@ export default class Actor implements Actors {
     this.sprites = sprites;
     this.speed = speed;
     this.subsctiptions = [subsctiptions.clock, subsctiptions.draw]
+    this.health = 100;
   }
 
   move(direction: Directions, game: Game) {
@@ -54,5 +56,11 @@ export default class Actor implements Actors {
   keyboardHandler(evnt: string, type: string):void {
     console.error('keyboardHandler need to be defined.');
   }
+
+  getsHit(damage: number) {
+    this.health = this.health - damage
+    console.log('health is: ', this.health);
+  }
+
 
 }

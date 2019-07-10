@@ -23,6 +23,7 @@ interface Game {
   drawField():void;
   init():void;
   isFieldFree(x:number, y:number, size: number, id:string): boolean;
+  checkForHits(x: number, y:number, size: number, damage: number, attackerId: string): boolean;
 }
 
 export default Game;

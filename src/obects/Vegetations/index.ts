@@ -1,6 +1,7 @@
 import Actor from "../actores/Actor";
 import Sprites from '../../interfaces/objects/actors/Sprites';
 import Sprite from "../actores/Sprites";
+import subsctiptions from '../../interfaces/Subscriptions';
 
 import { vegetation } from './pictureMap';
 import Game from "../../interfaces/Games";
@@ -11,6 +12,7 @@ export default class Fier extends Actor {
   activeSprite: Sprites;
   game: Game;
   tick: number;
+  health: number;
 
   constructor(xpos: number, ypos: number, game: Game) {
 
@@ -20,9 +22,12 @@ export default class Fier extends Actor {
 
 
     super(xpos, ypos, 3, [vegSpr]);
+    this.subsctiptions.push(subsctiptions.hits);
     this.activeSprite = vegSpr;
     this.game = game;
     this.tick = 0;
+    this.health = 100;
   }
 
+  
 }

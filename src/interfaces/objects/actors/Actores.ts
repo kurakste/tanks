@@ -19,5 +19,6 @@ export default interface Actores {
   draw(game: Game): void;
   keyboardHandler(event: string, type: string): void;
   getOccupation(): Array<number>;
+  getsHit(damage: number): void;
 
 }

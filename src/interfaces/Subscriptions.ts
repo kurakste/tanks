@@ -1,6 +1,7 @@
 enum Subscriptions {
   clock,
   draw,
-  keyboard
+  keyboard,
+  hits
 }
 export default Subscriptions;
