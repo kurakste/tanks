@@ -1,7 +1,7 @@
-import Actors from '../../interfaces/objects/actors/Actores';
+import Actors from '../../interfaces/Actores';
 import Game from '../../interfaces/Games';
-import Sprites from '../../interfaces/objects/actors/sprites';
-import Directions from '../../interfaces/objects/actors/Directions';
+import Sprites from '../../interfaces/Sprites';
+import Directions from '../../interfaces/Directions';
 import subsctiptions from '../../interfaces/Subscriptions';
 
 const randomStr = require('crypto-random-string');

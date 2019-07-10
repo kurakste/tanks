@@ -1,5 +1,5 @@
-import spriteseetsImageInterface from './objects/spritesheetObject';
-import Actores from './objects/actors/Actores';
+import spriteseetsImageInterface from './spritesheetObject';
+import Actores from './Actores';
 
 interface Game {
   spriteSheets: Array<any>;

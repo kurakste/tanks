@@ -1,11 +1,11 @@
 import Actor from "../actores/Actor";
 import Sprite from "../actores/Sprites";
-import Sprites from '../../interfaces/objects/actors/Sprites';
+import Sprites from '../../interfaces/Sprites';
 import {
   tankGoDown, tankGoLeft, tankGoRight, tankGoUp,
   tankDown, tankLeft, tankRight, tankUp
 } from './pictureMap';
-import dir from '../../interfaces/objects/actors/Directions';
+import dir from '../../interfaces/Directions';
 import sub from '../../interfaces/Subscriptions';
 import Game from "../../interfaces/Games";
 import Fire from './Fire';

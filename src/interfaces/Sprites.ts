@@ -1,4 +1,4 @@
-import Game from '../../Games';
+import Game from './Games';
 
 export default interface Sprites {
   spritesSheetCardName: string;

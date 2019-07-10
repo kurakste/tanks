@@ -1,6 +1,6 @@
 import imgLoader from '../helpers/imgLoader';
 import Games from '../interfaces/Games';
-import Actores from '../interfaces/objects/actors/Actores';
+import Actores from '../interfaces/Actores';
 import subscriptions from '../interfaces/Subscriptions';
 import boxCollides from '../helpers/boxCollides';
 

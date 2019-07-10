@@ -1,7 +1,7 @@
 import Actor from "../actores/Actor";
-import Sprites from '../../interfaces/objects/actors/Sprites';
+import Sprites from '../../interfaces/Sprites';
 import Sprite from "../actores/Sprites";
-import Dir from '../../interfaces/objects/actors/Directions';
+import Dir from '../../interfaces/Directions';
 
 import { ballLeft, ballRight, ballUp, ballDown } from './pictureMap';
 import Game from "../../interfaces/Games";

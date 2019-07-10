@@ -1,4 +1,4 @@
-import Sprites from '../../interfaces/objects/actors/Sprites';
+import Sprites from '../../interfaces/Sprites';
 import Game from '../../interfaces/Games';
 
 export default class Sprite implements Sprites {

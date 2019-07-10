@@ -1,5 +1,5 @@
 import Actor from "../actores/Actor";
-import Sprites from '../../interfaces/objects/actors/Sprites';
+import Sprites from '../../interfaces/Sprites';
 import Sprite from "../actores/Sprites";
 import subsctiptions from '../../interfaces/Subscriptions';
 
