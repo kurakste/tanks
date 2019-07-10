@@ -1,7 +1,8 @@
 import spriteseetsImageInterface from './spritesheetObject';
 import Actores from './Actores';
+import Hitter from './Hitter';
 
-interface Game {
+interface Games {
   spriteSheets: Array<any>;
   ctx: CanvasRenderingContext2D;
   name: string;
@@ -23,7 +24,7 @@ interface Game {
   drawField():void;
   init():void;
   isFieldFree(x:number, y:number, size: number, id:string): boolean;
-  checkForHits(x: number, y:number, size: number, damage: number, attackerId: string): boolean;
+  checkForHits(attacker: Actores & Hitter): boolean;
 }
 
-export default Game;
+export default Games;

@@ -5,9 +5,11 @@ import Dir from '../../interfaces/enum/Directions';
 
 import { ballLeft, ballRight, ballUp, ballDown } from './pictureMap';
 import Game from "../../interfaces/Games";
+import Actores from "../../interfaces/Actores";
+import Hitter from "../../interfaces/Hitter";
 
 
-export default class Fier extends Actor {
+export default class Fier extends Actor implements Actores, Hitter {
 
   activeSprite: Sprites;
   game: Game;
@@ -55,8 +57,8 @@ export default class Fier extends Actor {
     return spritetMatrix[this.direction]
   }
 
-  checkForHit(newx: number, newy: number) {
-    const impact = this.game.checkForHits(newx, newy, this.size, this.damage, this.id);
+  checkForHit(newx: number, newy: number):void {
+    const impact = this.game.checkForHits(this);
 
     impact && this.game.removeFigure(this);
 

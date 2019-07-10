@@ -2,6 +2,7 @@ import imgLoader from '../helpers/imgLoader';
 import Games from '../interfaces/Games';
 import Actores from '../interfaces/Actores';
 import Hittable from '../interfaces/Hittable';
+import Hitter from '../interfaces/Hitter';
 import subscriptions from '../interfaces/enum/Subscriptions';
 import boxCollides from '../helpers/boxCollides';
 
@@ -106,16 +107,16 @@ class Tanks implements Games {
     return res;
   }
 
-  checkForHits(x: number, y: number, size: number, damage: number, attackerId: string): boolean {
+  checkForHits(attacker: Actores & Hitter): boolean {
     let hit = false;
     const targets = this
       ._subscribers[subscriptions.hits]
-      .filter((el: Hittable & Actores) => el.id !== attackerId);
+      .filter((el: Hittable & Actores) => el.id !== attacker.id);
     targets.map((tg: Hittable & Actores) => {
       const pos1 = [tg.xpos, tg.ypos];
       const size1 = tg.size;
-      hit = boxCollides(pos1, size1, [x, y], size);
-      hit && tg.getsHit(damage);
+      hit = boxCollides(pos1, size1, [attacker.xpos, attacker.ypos], attacker.size);
+      hit && tg.getsHit(attacker.damage);
     });
     return hit;
   }

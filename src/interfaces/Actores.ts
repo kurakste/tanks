@@ -1,5 +1,5 @@
 import Sprite from './Sprites';
-import Game from './Games';
+import Games from './Games';
 import Directions from './enum/Directions';
 import Subscriptions from './enum/Subscriptions';
 
@@ -12,9 +12,9 @@ export default interface Actores {
   speed: number;
   sprites: Array<Sprite>;
   subsctiptions: Array<Subscriptions>;
-  move(direction: Directions, game: Game): void;
+  move(direction: Directions, game: Games): void;
   clock(): void;
-  draw(game: Game): void;
+  draw(game: Games): void;
   keyboardHandler(event: string, type: string): void;
   getOccupation(): Array<number>;
 }
