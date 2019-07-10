@@ -1,5 +1,6 @@
 interface Hittable {
   healht: number;
 
-  checkForHits(x: number, y:number, size: number, damage: number, attackerId: string): boolean;
+  getsHit(damage: number):void;
 }
+export default Hittable;
