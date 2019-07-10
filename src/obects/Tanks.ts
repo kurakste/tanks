@@ -1,10 +1,7 @@
 import imgLoader from '../helpers/imgLoader';
 import Games from '../interfaces/Games';
-import KeyboardStates from '../interfaces/KeyboardStates';
-import KeyboardState from './KeyBoardState';
 import Actores from '../interfaces/objects/actors/Actores';
 import subscriptions from '../interfaces/Subscriptions';
-import Actor from './actores/Actor';
 import boxCollides from '../helpers/boxCollides';
 
 class Tanks implements Games {
