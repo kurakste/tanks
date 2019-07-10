@@ -108,7 +108,13 @@ export default class Tank extends Actor {
       case dir.Down: newypos = this.ypos + this.speed; break;
     }
     const isFree = this.game.isFieldFree(newxpos, newypos, this.size, this.id);
-    if (isFree) {
+    const inGameField = () =>{
+      let res =true;
+      if (newxpos<0 || newxpos>this.game.width-this.size) res = false;
+      if (newypos<0 || newypos>this.game.height-this.size) res = false;
+      return res;
+    }
+    if (isFree && inGameField()) {
       this.moving = true;
       this.xpos = newxpos;
       this.ypos = newypos;
