@@ -2,6 +2,7 @@ import './styles/main.scss';
 import Tanks from './obects/Tanks';
 import sprSheetsArray from './img/imgSpritesheetsArr';
 import Tank from './obects/Tank';
+import Veg from './obects/Vegetations';
 
 const canva = <HTMLCanvasElement>document.getElementById('cbox');
 const ctx = canva.getContext('2d');
@@ -11,9 +12,12 @@ const ctx = canva.getContext('2d');
   
   const tanks = new Tanks('Tanks', 25 , 600, 600, 'lightblue', ctx);
 
-  const tank = new Tank(20, 30, tanks);
   await tanks.loadSpritesSheets(sprSheetsArray);
+  const tank = new Tank(20, 30, tanks);
+  const veg1 = new Veg(100, 100, tanks);
+
   tanks.addFigure(tank);
+  tanks.addFigure(veg1);
   tanks.init();
   setInterval(tanks.clock, 8)
   window.addEventListener('keydown',(e:KeyboardEvent)=>tanks.keyboardHandler(e));
