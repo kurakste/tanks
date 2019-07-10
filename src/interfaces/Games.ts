@@ -1,5 +1,4 @@
 import spriteseetsImageInterface from './objects/spritesheetObject';
-import KeyboardStates from './KeyboardStates';
 import Actores from './objects/actors/Actores';
 
 interface Game {
@@ -23,6 +22,7 @@ interface Game {
   removeFigure(figure: Actores):void;
   drawField():void;
   init():void;
+  isFieldFree(x:number, y:number, size: number, id:string): boolean;
 }
 
 export default Game;

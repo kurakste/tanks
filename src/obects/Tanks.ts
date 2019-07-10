@@ -4,6 +4,8 @@ import KeyboardStates from '../interfaces/KeyboardStates';
 import KeyboardState from './KeyBoardState';
 import Actores from '../interfaces/objects/actors/Actores';
 import subscriptions from '../interfaces/Subscriptions';
+import Actor from './actores/Actor';
+import boxCollides from '../helpers/boxCollides';
 
 class Tanks implements Games {
   spriteSheets: Array<any>;
@@ -93,38 +95,51 @@ class Tanks implements Games {
     });
   }
 
-
-
-  keyboardHandler(event: KeyboardEvent): void {
-    // if (event.type === 'keyup') {
-    //   this.keyPressed = false;
-    // } else {
-    //   this.keyPressed = event.code;
-    //   let a = this.keyPressed;
-    //   console.log('after presed: ',  a, this);
-    this.keyboardEvent(event.code, event.type);
-    // }
-    // switch (event.code) {
-    //   case 'KeyH': this.keyboardEvent('left'); break;
-    //   case 'KeyL': this.keyboardEvent('right'); break;
-    //   case 'KeyJ': this.keyboardEvent('up'); break;
-    //   case 'KeyK': this.keyboardEvent('down'); break;
-    //   case 'KeyA': this.keyboardEvent('fier'); break;
-    // }
-
-  };
-
-  keyboardEvent(keyEvent: string, evType: string) {
-    this._subscribers[subscriptions.keyboard] && this._subscribers[subscriptions.keyboard].map((act: Actores) => {
-      act.keyboardHandler(keyEvent, evType);
+  isFieldFree(x: number, y: number, size: number, id: string): boolean {
+    let res = true
+    const pos = [x, y];
+    const figures = this._subscribers[subscriptions.draw]
+      .filter((el: Actores) => el.id != id);
+    figures.map((ent:Actores) => {
+      if (!ent.getOccupation) return;
+      const [x1, y1, size1] = ent.getOccupation();
+      const pos1 = [x1, y1];
+      const tmp = !boxCollides(pos, size, pos1, size1);
+      res = res && tmp;
     });
-
-
+    return res;
   }
 
-  init() {
-    console.log('I start well!', this);
-  }
+keyboardHandler(event: KeyboardEvent): void {
+  // if (event.type === 'keyup') {
+  //   this.keyPressed = false;
+  // } else {
+  //   this.keyPressed = event.code;
+  //   let a = this.keyPressed;
+  //   console.log('after presed: ',  a, this);
+  this.keyboardEvent(event.code, event.type);
+  // }
+  // switch (event.code) {
+  //   case 'KeyH': this.keyboardEvent('left'); break;
+  //   case 'KeyL': this.keyboardEvent('right'); break;
+  //   case 'KeyJ': this.keyboardEvent('up'); break;
+  //   case 'KeyK': this.keyboardEvent('down'); break;
+  //   case 'KeyA': this.keyboardEvent('fier'); break;
+  // }
+
+};
+
+keyboardEvent(keyEvent: string, evType: string) {
+  this._subscribers[subscriptions.keyboard] && this._subscribers[subscriptions.keyboard].map((act: Actores) => {
+    act.keyboardHandler(keyEvent, evType);
+  });
+
+
+}
+
+init() {
+  console.log('I start well!', this);
+}
 
 }
 

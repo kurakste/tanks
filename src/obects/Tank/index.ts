@@ -79,6 +79,7 @@ export default class Tank extends Actor {
   stop() {
     this.moving = false;
   }
+
   fier() {
     const delta = 30;
     const shiftMatrix: { [key in dir]: any } = {
@@ -97,18 +98,29 @@ export default class Tank extends Actor {
     this.game.addFigure(ball);
   }
   move() {
-    this.moving = true;
+    //TODO: refactor this switch
+    let newxpos = this.xpos;
+    let newypos = this.ypos;
     switch (this.direction) {
-      case dir.Left: this.xpos = this.xpos - this.speed; break;
-      case dir.Right: this.xpos = this.xpos + this.speed; break;
-      case dir.Up: this.ypos = this.ypos - this.speed; break;
-      case dir.Down: this.ypos = this.ypos + this.speed; break;
+      case dir.Left: newxpos = this.xpos - this.speed; break;
+      case dir.Right: newxpos = this.xpos + this.speed; break;
+      case dir.Up: newypos = this.ypos - this.speed; break;
+      case dir.Down: newypos = this.ypos + this.speed; break;
     }
+    const isFree = this.game.isFieldFree(newxpos, newypos, this.size, this.id);
+    if (isFree) {
+      this.moving = true;
+      this.xpos = newxpos;
+      this.ypos = newypos;
+    }
+
   }
 
   getSprite(): Sprites {
     let spr;
     //console.log(this.moving);
+    //TODO: refactor this switch
+
     if (this.moving) {
       switch (this.direction) {
         case dir.Left: spr = this.sprites[2]; break;
