@@ -3,7 +3,7 @@ import Sprites from '../../interfaces/Sprites';
 import Sprite from "../actores/Sprites";
 import Dir from '../../interfaces/enum/Directions';
 
-import { ballLeft, ballRight, ballUp, ballDown } from './pictureMap';
+import { ballLeft, ballRight, ballUp, ballDown } from './ballMap';
 import Game from "../../interfaces/Games";
 import Actores from "../../interfaces/Actores";
 import Hitter from "../../interfaces/Hitter";

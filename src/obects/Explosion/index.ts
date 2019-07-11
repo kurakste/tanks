@@ -2,7 +2,7 @@ import Actor from '../actores/Actor';
 import Sprites from '../../interfaces/Sprites';
 import Sprite from '../actores/Sprites';
 
-import { fire } from '../Tank/pictureMap';
+import { explosion } from './explosionMap';
 import Game from '../../interfaces/Games';
 
 
@@ -16,7 +16,7 @@ export default class Fier extends Actor {
   constructor(xpos: number, ypos: number, game: Game) {
 
     const fireSpr = new Sprite(
-      'fullSpriteSheet', fire, [0, 1, 2, 1, 0]
+      'fullSpriteSheet', explosion, [0, 1, 2, 1, 0]
     );
 
 
