@@ -5,6 +5,7 @@ import Hittable from '../interfaces/Hittable';
 import Hitter from '../interfaces/Hitter';
 import subscriptions from '../interfaces/enum/Subscriptions';
 import boxCollides from '../helpers/boxCollides';
+import KeyboardListener from '../interfaces/keyboardListener';
 
 class Tanks implements Games {
   spriteSheets: Array<any>;
@@ -127,7 +128,7 @@ class Tanks implements Games {
   };
 
   keyboardEvent(keyEvent: string, evType: string) {
-    this._subscribers[subscriptions.keyboard] && this._subscribers[subscriptions.keyboard].map((act: Actores) => {
+    this._subscribers[subscriptions.keyboard] && this._subscribers[subscriptions.keyboard].map((act: Actores & KeyboardListener) => {
       act.keyboardHandler(keyEvent, evType);
     });
   }
