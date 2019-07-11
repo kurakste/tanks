@@ -60,7 +60,6 @@ export default class Ball extends Actor implements Actores, Hitter {
 
   checkForHit(newx: number, newy: number):void {
     const impact = this.game.checkForHits(this);
-    console.log('impact: ', impact);
 
     if (impact){
       const exposion = new Explosion(this.xpos, this.ypos, this.game);

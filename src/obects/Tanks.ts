@@ -134,7 +134,6 @@ class Tanks implements Games {
 
   getsHit(damage: number) {
     this.health = this.health - damage
-    console.log('health is: ', this.health);
   }
 
   init() {

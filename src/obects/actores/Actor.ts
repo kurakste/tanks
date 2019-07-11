@@ -57,7 +57,6 @@ export default class Actor implements Actors {
 
   getsHit(damage: number) {
     this.health = this.health - damage
-    console.log('health is: ', this.health);
   }
 
 
