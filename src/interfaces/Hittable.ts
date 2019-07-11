@@ -1,5 +1,5 @@
 interface Hittable {
-  healht: number;
+  health: number;
 
   getsHit(damage: number):void;
 }

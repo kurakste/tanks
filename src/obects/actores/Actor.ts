@@ -55,9 +55,6 @@ export default class Actor implements Actors {
     console.error('keyboardHandler need to be defined.');
   }
 
-  getsHit(damage: number) {
-    this.health = this.health - damage
-  }
-
+ 
 
 }

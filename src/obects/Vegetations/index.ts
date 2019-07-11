@@ -5,9 +5,10 @@ import subsctiptions from '../../interfaces/enum/Subscriptions';
 
 import { vegetation } from './pictureMap';
 import Game from "../../interfaces/Games";
+import Hittable from "../../interfaces/Hittable";
 
 
-export default class Fier extends Actor {
+export default class Fier extends Actor implements Hittable {
 
   activeSprite: Sprites;
   game: Game;
@@ -32,6 +33,10 @@ export default class Fier extends Actor {
   clock() {
     (this.health<=0) && this.game.removeFigure(this);
     super.clock();
+  }
+
+  getsHit(damage: number) {
+    this.health = this.health - damage
   }
 
   

@@ -5,10 +5,10 @@ import subsctiptions from '../../interfaces/enum/Subscriptions';
 
 import { brick } from './pictureMap';
 import Game from "../../interfaces/Games";
+import Hittable from "../../interfaces/Hittable";
 
 
-export default class Brick extends Actor {
-
+export default class Brick extends Actor implements Hittable {
   activeSprite: Sprites;
   game: Game;
   tick: number;
@@ -33,6 +33,11 @@ export default class Brick extends Actor {
     (this.health<=0) && this.game.removeFigure(this);
     super.clock();
   }
+
+  getsHit(damage: number) {
+    this.health = this.health - damage
+  }
+
 
   
 }
