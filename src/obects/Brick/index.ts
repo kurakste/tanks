@@ -2,7 +2,6 @@ import Actor from "../actores/Actor";
 import Sprites from '../../interfaces/Sprites';
 import Sprite from "../actores/Sprites";
 import subsctiptions from '../../interfaces/enum/Subscriptions';
-
 import { brick } from './pictureMap';
 import Game from "../../interfaces/Games";
 import Hittable from "../../interfaces/Hittable";

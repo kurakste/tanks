@@ -5,12 +5,15 @@ function collides(x: number, y: number, r: number, b: number,
   return res;
 }
 
-function boxCollides(pos:Array<number>, size:number, 
-  pos2:Array<number>, size2: number) {
+function boxCollides(pos: Array<number>, size: number,
+  pos2: Array<number>, size2: number) {
   return collides(pos[0], pos[1],
     pos[0] + size, pos[1] + size,
     pos2[0], pos2[1],
     pos2[0] + size2, pos2[1] + size2);
 }
+
+
+
 
 export default boxCollides;
