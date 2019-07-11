@@ -124,7 +124,7 @@ export default class Tank extends Actor {
 
   }
 
-  getSprite(): Sprites {
+  _getSprite(): Sprites {
     let spr;
     const moveMatrix: { [key in dir]: any } = {
       [dir.Left]: () => { spr = this.sprites[2] },

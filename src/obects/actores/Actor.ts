@@ -51,10 +51,4 @@ export default class Actor implements Actors {
     return [this.xpos, this.ypos, this.size]
   }
 
-  // keyboardHandler(evnt: string, type: string):void {
-  //   console.error('keyboardHandler need to be defined.');
-  // }
-
- 
-
 }
