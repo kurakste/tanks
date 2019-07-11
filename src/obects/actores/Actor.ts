@@ -34,16 +34,16 @@ export default class Actor implements Actors {
   }
 
   clock() {
-    const sprite = this.getSprite();
+    const sprite = this._getSprite();
     sprite.clock();
   }
 
 
   draw(game: Game) {
-    const sprite = this.getSprite()
+    const sprite = this._getSprite()
     sprite.draw(this.xpos, this.ypos, game);
   }
-  getSprite(): Sprites {
+  _getSprite(): Sprites {
     return this.sprites[0];
   }
 
@@ -51,9 +51,9 @@ export default class Actor implements Actors {
     return [this.xpos, this.ypos, this.size]
   }
 
-  keyboardHandler(evnt: string, type: string):void {
-    console.error('keyboardHandler need to be defined.');
-  }
+  // keyboardHandler(evnt: string, type: string):void {
+  //   console.error('keyboardHandler need to be defined.');
+  // }
 
  
 

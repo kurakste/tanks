@@ -15,6 +15,6 @@ export default interface Actores {
   move(direction: Directions, game: Games): void;
   clock(): void;
   draw(game: Games): void;
-  keyboardHandler(event: string, type: string): void;
+  //keyboardHandler(event: string, type: string): void;
   getOccupation(): Array<number>;
 }
