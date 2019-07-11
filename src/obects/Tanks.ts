@@ -115,8 +115,9 @@ class Tanks implements Games {
     targets.map((tg: Hittable & Actores) => {
       const pos1 = [tg.xpos, tg.ypos];
       const size1 = tg.size;
-      hit = boxCollides(pos1, size1, [attacker.xpos, attacker.ypos], attacker.size);
-      hit && tg.getsHit(attacker.damage);
+      const _hit =  boxCollides(pos1, size1, [attacker.xpos, attacker.ypos], attacker.size);
+      _hit && tg.getsHit(attacker.damage);
+      hit = hit || _hit;
     });
     return hit;
   }
