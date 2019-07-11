@@ -7,6 +7,7 @@ import { ballLeft, ballRight, ballUp, ballDown } from './pictureMap';
 import Game from "../../interfaces/Games";
 import Actores from "../../interfaces/Actores";
 import Hitter from "../../interfaces/Hitter";
+import Explosion from '../Explosion';
 
 
 export default class Ball extends Actor implements Actores, Hitter {
@@ -60,8 +61,11 @@ export default class Ball extends Actor implements Actores, Hitter {
   checkForHit(newx: number, newy: number):void {
     const impact = this.game.checkForHits(this);
 
-    impact && this.game.removeFigure(this);
-
+    if (impact){
+      const exposion = new Explosion(this.xpos, this.ypos, this.game);
+      this.game.removeFigure(this);
+      this.game.addFigure(exposion);
+    }
   }
 
   clock() {

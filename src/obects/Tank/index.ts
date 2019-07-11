@@ -8,7 +8,7 @@ import {
 import dir from '../../interfaces/enum/Directions';
 import sub from '../../interfaces/enum/Subscriptions';
 import Game from "../../interfaces/Games";
-import Fire from './Fire';
+import Fire from '../Explosion';
 import Ball from './Ball';
 
 export default class Tank extends Actor {
