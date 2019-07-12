@@ -46,13 +46,14 @@ export default class Ball extends Actor implements Actores, Hitter {
     this.damage = 30;
     this.size = 15;
   }
-
-  getSprite(): Sprites {
+  
+  _getSprite(): Sprites {
+  //  console.log(this.direction);;
     const spritetMatrix: { [key in Dir]: any } = {
       [Dir.Up]: this.sprites[3],
       [Dir.Down]: this.sprites[2],
       [Dir.Left]: this.sprites[0],
-      [Dir.Right]: this.sprites[0],
+      [Dir.Right]: this.sprites[1],
     }
 
     return spritetMatrix[this.direction]
