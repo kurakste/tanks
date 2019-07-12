@@ -11,7 +11,7 @@ const ctx = canva.getContext('2d');
 (async function () {
 
   
-  const tanks = new Tanks('Tanks', 25 , 600, 600, 'black', ctx);
+  const tanks = new Tanks('Tanks', 25 , 608, 608, 'black', ctx);
 
   await tanks.loadSpritesSheets(sprSheetsArray);
   const tank = new Tank(20, 30, tanks);
