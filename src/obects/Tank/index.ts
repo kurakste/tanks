@@ -8,7 +8,7 @@ import {
 import dir from '../../interfaces/enum/Directions';
 import sub from '../../interfaces/enum/Subscriptions';
 import Game from "../../interfaces/Games";
-import Fire from '../Explosion';
+import Fire from '../Fier';
 import Ball from '../Ball/Ball';
 
 export default class Tank extends Actor {
@@ -81,7 +81,7 @@ export default class Tank extends Actor {
   }
 
   fier() {
-    const delta = 30;
+    const delta = 20;
     const shiftMatrix: { [key in dir]: any } = {
       [dir.Up]: [0, - delta],
       [dir.Down]: [0, delta],
