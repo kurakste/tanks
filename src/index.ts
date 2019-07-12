@@ -3,7 +3,7 @@ import Tanks from './obects/Tanks';
 import sprSheetsArray from './img/imgSpritesheetsArr';
 import Tank from './obects/Tank';
 import Veg from './obects/Vegetations';
-import Brick from './obects/Brick';
+import { getBrick } from './obects/BarrierFab';
 
 const canva = <HTMLCanvasElement>document.getElementById('cbox');
 const ctx = canva.getContext('2d');
@@ -16,7 +16,7 @@ const ctx = canva.getContext('2d');
   await tanks.loadSpritesSheets(sprSheetsArray);
   const tank = new Tank(20, 30, tanks);
   const veg1 = new Veg(100, 100, tanks);
-  const brick1 = new Brick(400,400, tanks);
+  const brick1 = getBrick(400,400, tanks);
 
   tanks.addFigure(tank);
   tanks.addFigure(veg1);

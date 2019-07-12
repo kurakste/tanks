@@ -2,7 +2,7 @@ import Actor from "../actores/Actor";
 import Sprites from '../../interfaces/Sprites';
 import Sprite from "../actores/Sprites";
 import subsctiptions from '../../interfaces/enum/Subscriptions';
-import { brick, brick70, brick40, brick10 } from './pictureMap';
+import { brick, brick70, brick40, brick10 } from '../BarrierFab/brickMap';
 import Game from "../../interfaces/Games";
 import Hittable from "../../interfaces/Hittable";
 
@@ -14,17 +14,13 @@ export default class Brick extends Actor implements Hittable {
   health: number;
   maxHealth: number;
 
-  constructor(xpos: number, ypos: number, game: Game) {
+  constructor(xpos: number, ypos: number, game: Game, sprites: Array<Sprites>) {
 
-    const brickSpr = new Sprite("fullSpriteSheet", brick, [0]);
-    const brickSpr70 = new Sprite("fullSpriteSheet", brick70, [0]);
-    const brickSpr40 = new Sprite("fullSpriteSheet", brick40, [0]);
-    const brickSpr10 = new Sprite("fullSpriteSheet", brick10, [0]);
+    
 
-
-    super(xpos, ypos, 3, [brickSpr, brickSpr70, brickSpr40, brickSpr10]);
+    super(xpos, ypos, 3, sprites);
     this.subsctiptions.push(subsctiptions.hits);
-    this.activeSprite = brickSpr;
+    this.activeSprite = sprites[0];
     this.game = game;
     this.tick = 0;
     this.health = 100;
