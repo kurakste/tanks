@@ -43,4 +43,5 @@ const getBlueBrick = (x: number, y: number, game: Games) => {
   return Brick;
 } 
 
+
 export { getBrick, getGreenBrick, getBlueBrick }

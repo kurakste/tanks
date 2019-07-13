@@ -7,6 +7,7 @@ import subscriptions from '../interfaces/enum/Subscriptions';
 import boxCollides from '../helpers/boxCollides';
 import KeyboardListener from '../interfaces/keyboardListener';
 import { getBrick, getGreenBrick, getBlueBrick } from './BarrierFab';
+import Veg from './Vegetations';
 
 
 class Tanks implements Games {
@@ -69,34 +70,27 @@ class Tanks implements Games {
   loadGameMap(map: Array<string>) {
     console.log('map is: ', map);
     let rowi = 0;
-    let coli  = 0;
+    let coli = 0;
     //let act = null;
 
     const mapMatrix: { [key: string]: any } = {
       'o': () => '',
-      'b': () => { const act =  getBlueBrick(coli*32, rowi*32, this); this.addFigure(act)},
-      'g': () => { const act =  getGreenBrick(coli*32, rowi*32, this) ; this.addFigure(act)},
-      'h': () => { const act =  getBrick(coli*32, rowi*32, this); this.addFigure(act)},
-      }
-
-      map.map((row, ri) => {
-        const cols = row.split('');
-        rowi = ri;
-        cols.map((cel, ci) => {
-          coli = ci;
-          mapMatrix[cel]();
-          
-        });
-      })
+      'b': () => { const act = getBlueBrick(coli * 32, rowi * 32, this); this.addFigure(act) },
+      'g': () => { const act = getGreenBrick(coli * 32, rowi * 32, this); this.addFigure(act) },
+      'h': () => { const act = getBrick(coli * 32, rowi * 32, this); this.addFigure(act) },
+      'v': () => { const act = new Veg(coli*32, rowi*32, this); this.addFigure(act) },
     }
-    // const brick1 = getBrick(400,400, tanks);
-    // const gBrick = getGreenBrick(500,500, tanks);
-    // const gBrick1 = getGreenBrick(500,500 - 32*1, tanks);
-    // const gBrick2 = getGreenBrick(500,500 - 32*2, tanks);
-    // const bBrick = getBlueBrick(50,200, tanks);
-    // const bBrick1 = getBlueBrick(50 + 32,200, tanks);
-    // const bBrick2 = getBlueBrick(50 +64 ,200, tanks);
-  
+
+    map.map((row, ri) => {
+      const cols = row.split('');
+      rowi = ri;
+      cols.map((cel, ci) => {
+        coli = ci;
+        mapMatrix[cel]();
+
+      });
+    })
+  }
 
   addFigure(figure: Actores) {
     figure.subsctiptions.map(sub => {

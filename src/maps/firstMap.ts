@@ -10,7 +10,7 @@ export default [
   'oobbbbbbooooooooooo',
   'ooooooooooooooooooo',
   'ooooooooooooooooooo',
-  'ooooooooooooooooooo',
+  'ovvvvvvvvvvvvvvvvvo',
   'ooooooohooooooooooo',
   'ooooooohooooooooooo',
   'ooooooohooooooooooo',
@@ -25,4 +25,5 @@ export default [
   b - Blue brick 
   g - green brick
   h - block
+  v - vegetation
 */
