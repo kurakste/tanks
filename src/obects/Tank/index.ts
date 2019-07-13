@@ -109,7 +109,7 @@ export default class Tank extends Actor {
     };
 
     moveMatrix[this.direction]();
-    const isFree = this.game.isFieldFree(newxpos, newypos, this.size, this.id);
+    const isFree = this.game.isFieldFree(newxpos, newypos, this.size-5 , this.id);
     const inGameField = () => {
       let res = true;
       if (newxpos < 0 || newxpos > this.game.width - this.size) res = false;
