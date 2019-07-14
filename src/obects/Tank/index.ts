@@ -1,63 +1,31 @@
 import Actor from "../actores/Actor";
-import Sprite from "../actores/Sprites";
 import Sprites from '../../interfaces/Sprites';
-import {
-  tankGoDown, tankGoLeft, tankGoRight, tankGoUp,
-  tankDown, tankLeft, tankRight, tankUp
-} from './pictureMap';
+;
 import dir from '../../interfaces/enum/Directions';
 import sub from '../../interfaces/enum/Subscriptions';
 import Game from "../../interfaces/Games";
 import Fire from '../Fier';
 import Ball from '../Ball/Ball';
+import spritesArray from './getSpritesArray';
 
 export default class Tank extends Actor {
   direction: dir;
   dirToSprite: any;
-  activeSprite: Sprites;
   moving: boolean;
   game: Game;
 
   constructor(xpos: number, ypos: number, game: Game) {
-    const tankDownSpr = new Sprite(
-      "fullSpriteSheet", tankDown, [0]
-    );
-    const tankUpSpr = new Sprite(
-      "fullSpriteSheet", tankUp, [0]
-    );
-    const tankLeftSpr = new Sprite(
-      "fullSpriteSheet", tankLeft, [0]
-    );
-    const tankRightSpr = new Sprite(
-      "fullSpriteSheet", tankRight, [0]
-    );
-    const tankGoDowndSpr = new Sprite(
-      "fullSpriteSheet", tankGoDown, [0, 1, 2, 3, 4, 5, 6]
-    );
-    const tankGoUpSpr = new Sprite(
-      "fullSpriteSheet", tankGoUp, [0, 1, 2, 3, 4, 5, 6]
-    );
-    const tankGoLeftSpr = new Sprite(
-      "fullSpriteSheet", tankGoLeft, [0, 1, 2, 3, 4, 5, 6]
-    );
-    const tankGoRightSpr = new Sprite(
-      "fullSpriteSheet", tankGoRight, [0, 1, 2, 3, 4, 5, 6]
-    );
-
-    super(xpos, ypos, 3, [
-      tankGoDowndSpr, tankGoUpSpr, tankGoLeftSpr, tankGoRightSpr,
-      tankDownSpr, tankUpSpr, tankLeftSpr, tankRightSpr
-    ]);
-
+    
+    super(xpos, ypos, 3, spritesArray);
     this.moving = false;
     this.subsctiptions.push(sub.keyboard);
+    this.subsctiptions.push(sub.hits);
     this.direction = dir.Up;
     this.dirToSprite = {};
     this.dirToSprite[dir.Up] = 1;
     this.dirToSprite[dir.Down] = 0;
     this.dirToSprite[dir.Left] = 2;
     this.dirToSprite[dir.Right] = 3;
-    this.activeSprite = tankDownSpr;
     this.game = game;
   }
 
@@ -97,6 +65,7 @@ export default class Tank extends Actor {
     const ball = new Ball(x, y, this.game, this.direction);
     this.game.addFigure(ball);
   }
+  
   move() {
     let newxpos = this.xpos;
     let newypos = this.ypos;
@@ -143,5 +112,14 @@ export default class Tank extends Actor {
     this.moving && moveMatrix[this.direction]();
     (!this.moving) && standMatrix[this.direction]()
     return spr;
+  }
+
+  getsHit(damage: number) {
+    this.health = this.health - damage
+  }
+  
+  clock() {
+    (this.health<=0) && this.game.removeFigure(this);
+    super.clock();
   }
 }

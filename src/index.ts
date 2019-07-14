@@ -2,7 +2,7 @@ import './styles/main.scss';
 import Tanks from './obects/Tanks';
 import sprSheetsArray from './img/imgSpritesheetsArr';
 import Tank from './obects/Tank';
-import Veg from './obects/Vegetations';
+import ETank from './obects/TankEnemy';
 import map from './maps/firstMap';
 
 const canva = <HTMLCanvasElement>document.getElementById('cbox');
@@ -15,8 +15,9 @@ const ctx = canva.getContext('2d');
   await tanks.loadSpritesSheets(sprSheetsArray);
   tanks.loadGameMap(map);
 
-  const tank = new Tank(64, 550, tanks);
-  const figures = [tank ];
+  const tank = new Tank(32, 550, tanks);
+  const etank = new ETank(32, 64, tanks);
+  const figures = [tank, etank];
   figures.map( fig => tanks.addFigure(fig));
   
   tanks.init();
