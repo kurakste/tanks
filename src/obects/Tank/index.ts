@@ -65,8 +65,8 @@ export default class Tank extends Actor {
     const keyMatrix: { [key: string]: any } = {};
     keyMatrix['KeyH'] = () => { this.direction = dir.Left; this.move() };
     keyMatrix['KeyL'] = () => { this.direction = dir.Right; this.move() };
-    keyMatrix['KeyJ'] = () => { this.direction = dir.Up; this.move() };
-    keyMatrix['KeyK'] = () => { this.direction = dir.Down; this.move() };
+    keyMatrix['KeyJ'] = () => { this.direction = dir.Down; this.move() };
+    keyMatrix['KeyK'] = () => { this.direction = dir.Up; this.move() };
     keyMatrix['KeyA'] = () => { this.fier(); };
 
     if (type === 'keydown') {
