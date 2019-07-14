@@ -29,7 +29,7 @@ export default class ETank extends Tank {
   _randFier() {
     if (!this.randomFier) {
       this.fier();
-      this.randomFier =Math.floor(Math.random()*400); 
+      this.randomFier =Math.floor(Math.random()*200); 
     } else {
       --this.randomFier
     }

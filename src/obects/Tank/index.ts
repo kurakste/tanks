@@ -15,7 +15,7 @@ export default class Tank extends Actor {
   game: Game;
 
   constructor(xpos: number, ypos: number, game: Game) {
-    
+
     super(xpos, ypos, 3, spritesArray);
     this.moving = false;
     this.subsctiptions.push(sub.keyboard);
@@ -49,7 +49,7 @@ export default class Tank extends Actor {
   }
 
   fier() {
-    const delta = 20;
+    const delta = 35;
     const shiftMatrix: { [key in dir]: any } = {
       [dir.Up]: [0, - delta],
       [dir.Down]: [0, delta],
@@ -63,11 +63,12 @@ export default class Tank extends Actor {
     const fire = new Fire(x, y, this.game);
     this.game.addFigure(fire);
     const ball = new Ball(x, y, this.game, this.direction);
+    //console.log(`tank: ${this.xpos}, ${this.ypos}. Fier: ${x}, ${y}`)
     this.game.addFigure(ball);
   }
 
-  _isStepFree(x: number, y: number):boolean {
-    const isFree = this.game.isFieldFree(x, y, this.size-5 , this.id);
+  _isStepFree(x: number, y: number): boolean {
+    const isFree = this.game.isFieldFree(x, y, this.size - 5, this.id);
 
     const inGameField = () => {
       let res = true;
@@ -77,7 +78,7 @@ export default class Tank extends Actor {
     }
     //console.log('isFree: ', isFree, 'inField:', inGameField())
     return (isFree && inGameField());
-  } 
+  }
 
   move() {
     let newxpos = this.xpos;
@@ -91,7 +92,7 @@ export default class Tank extends Actor {
     };
 
     moveMatrix[this.direction]();
-    
+
     if (this._isStepFree(newxpos, newypos)) {
       this.moving = true;
       this.xpos = newxpos;
@@ -124,9 +125,13 @@ export default class Tank extends Actor {
   getsHit(damage: number) {
     this.health = this.health - damage
   }
-  
+
   clock() {
-    (this.health<=0) && this.game.removeFigure(this);
+    if (this.health <= 0) {
+      this.game.removeFigure(this);
+      const fire = new Fire(this.xpos, this.ypos, this.game);
+      this.game.addFigure(fire);
+    }
     super.clock();
   }
 }

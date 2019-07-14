@@ -68,7 +68,6 @@ class Tanks implements Games {
   }
 
   loadGameMap(map: Array<string>) {
-    console.log('map is: ', map);
     let rowi = 0;
     let coli = 0;
     //let act = null;

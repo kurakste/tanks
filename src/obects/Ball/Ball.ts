@@ -44,7 +44,7 @@ export default class Ball extends Actor implements Actores, Hitter {
     this.tick = 0;
     this.direction = dir;
     this.damage = 30;
-    this.size = 15;
+    this.size = 10;
   }
   
   _getSprite(): Sprites {
