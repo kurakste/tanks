@@ -5,10 +5,8 @@ import subsctiptions from '../../interfaces/enum/Subscriptions';
 
 import { vegetation } from './pictureMap';
 import Game from "../../interfaces/Games";
-import Hittable from "../../interfaces/Hittable";
 
-
-export default class Fier extends Actor implements Hittable {
+export default class Vegetation extends Actor {
 
   activeSprite: Sprites;
   game: Game;
@@ -21,23 +19,10 @@ export default class Fier extends Actor implements Hittable {
       "fullSpriteSheet", vegetation, [0]
     );
 
-
     super(xpos, ypos, 3, [vegSpr]);
-    this.subsctiptions.push(subsctiptions.hits);
     this.activeSprite = vegSpr;
     this.game = game;
-    this.tick = 0;
-    this.health = 100;
+    this.transparency = true;
   }
 
-  clock() {
-    (this.health<=0) && this.game.removeFigure(this);
-    super.clock();
-  }
-
-  getsHit(damage: number) {
-    this.health = this.health - damage
-  }
-
-  
 }

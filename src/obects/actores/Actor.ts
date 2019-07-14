@@ -15,6 +15,7 @@ export default class Actor implements Actors {
   sprites: Array<Sprites>;
   subsctiptions: Array<subsctiptions>
   health: number;
+  transparency: boolean;
 
   constructor(
     xpos: number, ypos: number, speed: number, sprites: Array<Sprites>
@@ -27,6 +28,7 @@ export default class Actor implements Actors {
     this.speed = speed;
     this.subsctiptions = [subsctiptions.clock, subsctiptions.draw]
     this.health = 100;
+    this.transparency = false;
   }
 
   move(direction: Directions, game: Game) {

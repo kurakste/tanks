@@ -12,6 +12,7 @@ export default interface Actores {
   speed: number;
   sprites: Array<Sprite>;
   subsctiptions: Array<Subscriptions>;
+  transparency: boolean;
   move(direction: Directions, game: Games): void;
   clock(): void;
   draw(game: Games): void;

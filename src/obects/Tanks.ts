@@ -124,6 +124,7 @@ class Tanks implements Games {
       .filter((el: Actores) => el.id != id);
     figures.map((ent: Actores) => {
       if (!ent.getOccupation) return;
+      if (ent.transparency) return;
       const [x1, y1, size1] = ent.getOccupation();
       const pos1 = [x1, y1];
       const tmp = !boxCollides(pos, size, pos1, size1);
