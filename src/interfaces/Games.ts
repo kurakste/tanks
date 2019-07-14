@@ -10,6 +10,8 @@ interface Games {
   work: boolean;
   height: number;
   width: number;
+  curentEnemyEmount: number;
+  maxEnemyEmount: number;
 
   _now: number;
   _lt: number;

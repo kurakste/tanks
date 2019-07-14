@@ -22,6 +22,13 @@ export default class ETank extends Tank {
     super.clock()
   }
 
+  getsHit(demage:number) {
+    super.getsHit(demage);
+    if (this.health<0) {
+      this.game.curentEnemyEmount--
+    }
+  }
+
   _changeDirection() {
 
   }

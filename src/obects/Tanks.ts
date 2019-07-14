@@ -8,6 +8,7 @@ import boxCollides from '../helpers/boxCollides';
 import KeyboardListener from '../interfaces/keyboardListener';
 import { getBrick, getGreenBrick, getBlueBrick } from './BarrierFab';
 import Veg from './Vegetations';
+import ETank from '../obects/TankEnemy';
 
 
 class Tanks implements Games {
@@ -24,6 +25,8 @@ class Tanks implements Games {
   _now: number;
   _lt: number;
   health: number;
+  curentEnemyEmount: number;
+  maxEnemyEmount: number;
 
 
   constructor(name: string, speed: number, wd: number, hg: number, bgcol: string, ctx: CanvasRenderingContext2D) {
@@ -45,6 +48,14 @@ class Tanks implements Games {
     this._subscribers[subscriptions.hits] = [];
     this.ctx = ctx;
     this.health = 200;
+    this.curentEnemyEmount =0;
+    this.maxEnemyEmount = 1;
+  }
+
+  addEnemy() {
+    const etank = new ETank(32, 64, this);
+    this.addFigure(etank)
+    this.curentEnemyEmount++;
   }
 
   clock() {
@@ -55,6 +66,10 @@ class Tanks implements Games {
     this._subscribers[subscriptions.clock].map((act: Actores) => {
       act.clock();
     });
+
+    if (this.curentEnemyEmount < this.maxEnemyEmount) {
+      this.addEnemy();
+    }
     this.drawField();
   }
 

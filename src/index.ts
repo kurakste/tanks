@@ -16,8 +16,7 @@ const ctx = canva.getContext('2d');
   tanks.loadGameMap(map);
 
   const tank = new Tank(32, 550, tanks);
-  const etank = new ETank(32, 64, tanks);
-  const figures = [tank, etank];
+  const figures = [tank];
   figures.map( fig => tanks.addFigure(fig));
   
   tanks.init();
