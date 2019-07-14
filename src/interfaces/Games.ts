@@ -10,8 +10,10 @@ interface Games {
   work: boolean;
   height: number;
   width: number;
-  curentEnemyEmount: number;
-  maxEnemyEmount: number;
+  curentEnemyAmount: number;
+  maxEnemyAmount: number;
+  curentHerroAmount: number;
+  maxHerroAmount: number;
 
   _now: number;
   _lt: number;
@@ -20,7 +22,7 @@ interface Games {
 
   clock(): void;
   loadSpritesSheets(arr: Array<spriteseetsImageInterface>):void;
-  loadGameMap(arrOfActors: Array<any>): void;
+  loadGameMap(arrOfActors: Array<any>, enemyPos: Array<any>, herroPos: Array<any>): void;
   addFigure(figure: Actores):void;
   removeFigure(figure: Actores):void;
   drawField():void;

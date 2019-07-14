@@ -25,7 +25,7 @@ export default class ETank extends Tank {
   getsHit(demage:number) {
     super.getsHit(demage);
     if (this.health<0) {
-      this.game.curentEnemyEmount--
+      this.game.curentEnemyAmount--
     }
   }
 

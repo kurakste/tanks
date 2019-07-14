@@ -9,6 +9,7 @@ import KeyboardListener from '../interfaces/keyboardListener';
 import { getBrick, getGreenBrick, getBlueBrick } from './BarrierFab';
 import Veg from './Vegetations';
 import ETank from '../obects/TankEnemy';
+import Tank from '../obects/Tank';
 
 
 class Tanks implements Games {
@@ -25,8 +26,12 @@ class Tanks implements Games {
   _now: number;
   _lt: number;
   health: number;
-  curentEnemyEmount: number;
-  maxEnemyEmount: number;
+  curentEnemyAmount: number;
+  maxEnemyAmount: number;
+  curentHerroAmount: number;
+  maxHerroAmount: number;
+  herroStartPoints: Array<any>;
+  enemyStartPoints: Array<any>;
 
 
   constructor(name: string, speed: number, wd: number, hg: number, bgcol: string, ctx: CanvasRenderingContext2D) {
@@ -48,14 +53,41 @@ class Tanks implements Games {
     this._subscribers[subscriptions.hits] = [];
     this.ctx = ctx;
     this.health = 200;
-    this.curentEnemyEmount =0;
-    this.maxEnemyEmount = 1;
+    this.curentEnemyAmount = 0;
+    this.maxEnemyAmount = 1;
+    this.curentHerroAmount = 0;
+    this.maxHerroAmount = 1;
   }
 
   addEnemy() {
-    const etank = new ETank(32, 64, this);
-    this.addFigure(etank)
-    this.curentEnemyEmount++;
+    if (this.enemyStartPoints) {
+      const max = this.enemyStartPoints.length;
+      const pos = Math.round(Math.random() * max);
+      const etank = new ETank(
+        this.enemyStartPoints[pos][0],
+        this.enemyStartPoints[pos][1],
+        this
+      );
+      this.addFigure(etank)
+
+    }
+    this.curentEnemyAmount++;
+  }
+
+  addHerro() {
+    if (this.herroStartPoints) {
+      const max = this.herroStartPoints.length;
+      const pos = Math.round(Math.random() * max);
+      const tank = new Tank(
+        this.herroStartPoints[pos][0],
+        this.herroStartPoints[pos][1],
+        this
+      );
+      this.addFigure(tank)
+
+    }
+    this.curentHerroAmount++;
+    
   }
 
   clock() {
@@ -63,13 +95,19 @@ class Tanks implements Games {
     let dt = (this._now - this._lt);
     if (dt <= this.fps * 1000) return;
     this._lt = Date.now();
+
     this._subscribers[subscriptions.clock].map((act: Actores) => {
       act.clock();
     });
 
-    if (this.curentEnemyEmount < this.maxEnemyEmount) {
+    if (this.curentEnemyAmount < this.maxEnemyAmount) {
       this.addEnemy();
     }
+
+    if (this.curentHerroAmount < this.maxEnemyAmount) {
+      this.addHerro();
+    }
+
     this.drawField();
   }
 
@@ -82,17 +120,23 @@ class Tanks implements Games {
     this.spriteSheets = out;
   }
 
-  loadGameMap(map: Array<string>) {
+  loadGameMap(
+    map: Array<string>,
+    enemyStartPoints: Array<any>,
+    herroStartPoints: Array<any>
+  ) {
     let rowi = 0;
     let coli = 0;
     //let act = null;
+    this.enemyStartPoints = enemyStartPoints;
+    this.herroStartPoints = herroStartPoints;
 
     const mapMatrix: { [key: string]: any } = {
       'o': () => '',
       'b': () => { const act = getBlueBrick(coli * 32, rowi * 32, this); this.addFigure(act) },
       'g': () => { const act = getGreenBrick(coli * 32, rowi * 32, this); this.addFigure(act) },
       'h': () => { const act = getBrick(coli * 32, rowi * 32, this); this.addFigure(act) },
-      'v': () => { const act = new Veg(coli*32, rowi*32, this); this.addFigure(act) },
+      'v': () => { const act = new Veg(coli * 32, rowi * 32, this); this.addFigure(act) },
     }
 
     map.map((row, ri) => {
