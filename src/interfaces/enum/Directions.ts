@@ -1,5 +1,5 @@
 enum Directions {
-  Up, Down, Left, Right
+  Up, Right,  Down, Left,
 }
 
 export default Directions;

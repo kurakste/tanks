@@ -65,7 +65,20 @@ export default class Tank extends Actor {
     const ball = new Ball(x, y, this.game, this.direction);
     this.game.addFigure(ball);
   }
-  
+
+  _isStepFree(x: number, y: number):boolean {
+    const isFree = this.game.isFieldFree(x, y, this.size-5 , this.id);
+
+    const inGameField = () => {
+      let res = true;
+      if (x < 0 || x > this.game.width - this.size) res = false;
+      if (y < 0 || y > this.game.height - this.size) res = false;
+      return res;
+    }
+    //console.log('isFree: ', isFree, 'inField:', inGameField())
+    return (isFree && inGameField());
+  } 
+
   move() {
     let newxpos = this.xpos;
     let newypos = this.ypos;
@@ -78,14 +91,8 @@ export default class Tank extends Actor {
     };
 
     moveMatrix[this.direction]();
-    const isFree = this.game.isFieldFree(newxpos, newypos, this.size-5 , this.id);
-    const inGameField = () => {
-      let res = true;
-      if (newxpos < 0 || newxpos > this.game.width - this.size) res = false;
-      if (newypos < 0 || newypos > this.game.height - this.size) res = false;
-      return res;
-    }
-    if (isFree && inGameField()) {
+    
+    if (this._isStepFree(newxpos, newypos)) {
       this.moving = true;
       this.xpos = newxpos;
       this.ypos = newypos;
