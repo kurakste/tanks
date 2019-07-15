@@ -226,6 +226,4 @@ class Tanks implements Games {
 
 }
 
-
-
 export default Tanks;

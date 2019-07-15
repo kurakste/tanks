@@ -14,9 +14,6 @@ const ctx = canva.getContext('2d');
   await tanks.loadSpritesSheets(sprSheetsArray);
   tanks.loadGameMap(map,  enemyStartPoints,  herroStartPoints);
 
-  // const tank = new Tank(32, 550, tanks);
-  // const figures = [tank];
-  // figures.map( fig => tanks.addFigure(fig));
   tanks.init();
   setInterval(tanks.clock, 8);
   window.addEventListener('keydown',(e:KeyboardEvent)=>tanks.keyboardHandler(e));
